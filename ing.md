@@ -167,3 +167,65 @@ Nel processo waterfall in particolare (plan driven) testing potrebbe essere seco
 Metodi:
 - **Prototipi**. Durante fare di **specifica** per facilitare raccolta e specifica requisiti. Oppure durante **design** per esplorare soluzioni diverse.
 - **Consegna incrementale**. Vedi il processo incrementale. Non posso fare consegna incrementale senza un processo incrementale e viceversa, sono un po' sinonimi.
+
+## Agile
+Storicamente, la maggior parte dei SWs erano grandi, molto longevi e richiedevano specifiche precise. Poi (fine anni 90) sviluppo rapido, poco overhead nel processo SW e adattamento a requisiti incompleti, imprecisi o mutabili sono diventati aspetti più importanti. Quindi Agile è nato e si è diffuso.
+
+Principi:
+- Specifica, design, implementazione e testing sono interlacciati
+- Consegna incrementale (2,4 settimane)
+- Coinvolgimento cliente durante il processo. Fornisce e prioritizza i requisiti, decidendo anche quali includere nel prossimo incremento. Valuta il SW mano a mano che è consegnato e fornisce feedback
+- Valorizzare skill del team, lasciando che proceda a modo suo senza forzare un processo rigido
+- Flessibilità, aspettarsi cambiamenti quindi sviluppare sistema in modo da accoglierli
+- Semplicità, sia nel prodotto che nel processo
+- Ridotta documentazione
+- Estensivo utilizzo di tool di supporto e automatizzazione
+
+Agile manifesto:
+- Persone e interazioni umane $>$ processi e strumenti
+- SW funzionante $>$ documentazione
+- Collaborazione con cliente $>$ negoziazione con cliente
+- Flessibilità $>$ rispettare il piano
+
+Applicabilità:
+- Prodotto medio-piccolo
+- Cliente disponibile ad essere coinvolto
+- Pochi vincoli esterni
+- Sviluppo agile allacciato ad un management agile
+
+Extreme programming, spinge lo sviluppo _iterativo_ all'estremo:
+- Versioni buildate molto spesso
+- In ogni build, _tutti_ i test sono _eseguiti_ e devono _passare_, anche solo per condividere il codice con un collega
+- Incremento consegnato ogni 2 settimane
+- On-site customer
+- CI/CD
+- Pair programming
+- TDD
+- Refactoring
+
+---
+
+**User story** = Storiella che racconta un **bisogno del cliente**
+
+**Task card** = Estratte dalle user story. Il team stima effort e risorse necessarie per ogni card. Il cliente le prioritizza e decide quali fare per il prossimo incremento. Difficile capire se sono state raccolte tutte le task card essenziali per un MVP.
+
+---
+
+**Test Driven Development** = Test case, strettamente legati ai requisiti (in particolare, scenari), sono scritti prima del codice ed eseguiti _automaticamente durante_ lo sviluppo. Vengono definiti con l'aiuto del cliente e validati da esso.
+
+**Refactoring** fatto quando si vede una chance di migliorare la qualità del codice, anche se non immediatamente necessario. Serve perché qualità deteriora andando avanti a fare modifiche locali.
+- Riorganizzazione classi e package
+- De-duplicazione
+- Estrazione funzioni
+- Rinominazione attributi e funzioni
+
+Pair Programming = Due sviluppatori allo stesso PC. Coppie create dinamicamente e cambiate di tanto in tanto. Vantaggi:
+- Collective ownership, gli sviluppatori si sentono responsabili dell'intera codebase e ci tengono alla sua qualità
+- Code review implicita e informale
+- Refactoring incoraggiato
+- Condivisione della conoscenza implicitamente
+- Non necessariamente inefficiente, evidence shows
+
+---
+
+Allo sviluppo Agile, si affianca la gestione Agile (SCRUM).
