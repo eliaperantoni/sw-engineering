@@ -51,9 +51,9 @@ Vari processi ma tutti includono queste attività **standard**:
 - Validazione
 - Evoluzione
 
-_Le attività_ di un processo vengono _pianificate_ secondo un mix di queste tecniche:
+_Le attività_ di un processo vengono _pianificate_ secondo un mix di queste management techniques:
 - Plan Driven: si pianifica tutto subito e poi si inizia il processo SW tracciando progresso
-- Agile: si pianifica mano a mano che il processo prosegue. Più facile reagire a cambiamenti
+- Agile (SCRUM): si pianifica mano a mano che il processo prosegue. Più facile reagire a cambiamenti
 
 Pianificazione delle attività $\neq$ Specifica del prodotto (cioè requisiti)
 
@@ -169,7 +169,11 @@ Metodi:
 - **Consegna incrementale**. Vedi il processo incrementale. Non posso fare consegna incrementale senza un processo incrementale e viceversa, sono un po' sinonimi.
 
 ## Agile
-Storicamente, la maggior parte dei SWs erano grandi, molto longevi e richiedevano specifiche precise. Poi (fine anni 90) sviluppo rapido, poco overhead nel processo SW e adattamento a requisiti incompleti, imprecisi o mutabili sono diventati aspetti più importanti. Quindi Agile è nato e si è diffuso.
+Storicamente, la maggior parte dei SWs erano grandi, molto longevi e richiedevano specifiche precise. Poi (fine anni 90) sviluppo rapido, poco overhead nel processo SW e adattamento a requisiti incompleti, imprecisi o mutabili sono diventati aspetti più importanti.
+
+Agile è una filosofia di sviluppo software. La vediamo applicata ad un processo SW che regola e caratterizza le attività di specifica, design, implementazione e validazione. Dopo vedremo SCRUM, una tecnica di project management che segue la filosofia agile ma la applica alla fase di pianificazione del processo stesso.
+
+(Lo il processo agile è il processo incrementale visto in precedenza, ma esteso e più dettagliato)
 
 Principi:
 - Specifica, design, implementazione e testing sono interlacciati
@@ -228,4 +232,39 @@ Pair Programming = Due sviluppatori allo stesso PC. Coppie create dinamicamente 
 
 ---
 
-Allo sviluppo Agile, si affianca la gestione Agile (SCRUM).
+Ora applichiamo la filosofia agile per fare project management, cioè la pianificazione del processo di sviluppo SW. La chiamiamo SCRUM e si contrappone alla metodologia di pianificazione Plan-Driven.
+
+Secondo SCRUM, lo sviluppo avviene secondo queste fasi:
+1. **Fase iniziale**: specifica iniziale del prodotto e design di architettura SW base
+2. Serie di sprint, ogni sprint produce incremento
+3. **Fase finale**: si completa il SW e si scrive documentazione
+
+Terminologia:
+- Product backlog: cose da fare. Le prime task si aggiungono nella fase iniziale dello SCRUM e poi vengono aggiunte mano a mano
+- Sprint: periodo di sviluppo di 2-4 settimane
+- Sprint backlog: cose da fare nello sprint corrente
+- Scrum: meeting giornaliero
+- Velocity: quante cose il team riesce a fare in uno sprint
+- ScrumMaster: persona all'interno del team che verifica che SCRUM sia rispettato
+- ProductOwner: cliente partecipa indicando requisiti, prioritizzandoli e fornendo feedback
+
+Un singolo sprint funziona così:
+<img width="500px" src="img/2022-11-19-18-47-37.png"/>
+
+- Product owner dice quali task dal product backlog sarebbero più prioritarie
+- Team decide quali task riesce a fare in questo sprint (anche usando la velocity stimata negli sprint precedenti) e le mette nello sprint backlog
+- Sprint. Durata fissa. Team isolato dal cliente che parla solo attraverso lo scrum master. Meeting giornalieri (scrums) molto brevi (10 minuti) in cui i membri del team si scambiano informazioni:
+    - Cosa ho fatto ieri
+    - Cosa faccio oggi
+    - Difficoltà incontrate
+- Alla fine dello sprint si dice come è andata e come migliorare
+
+Benefici:
+- Delivery on-time e quindi maggiore fiducia del cliente che è più incline a fornire feedback
+- Maggiore visibilità dello stato del progetto, rispetto ad un processo di sviluppo agile privo di management di qualsiasi tipo
+
+È importante che la comunicazione tra membri del team e con il cliente sia efficacie e rapida. Se si fa da remoto, bisogna dotarsi di strumenti per comunicare.
+
+---
+
+Scaling
