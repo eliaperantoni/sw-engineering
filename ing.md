@@ -15,9 +15,11 @@ Problemi comuni:
 - Non tutte le feature
 - SW bassa qualità
 - Utenti insoddisfatti
+
 Scuse:
 - Complessità intrinseca del problema
 - Ostacoli tecnologici
+
 Vere ragioni:
 - Dialogo stakeholder $\leftrightarrow$ sviluppatori
 - Difficoltà capire problemi degli utenti
@@ -38,6 +40,7 @@ Perché seguire un processo? Per rendere sviluppo:
 - Ordinato
 - Controllabile
 - Ripetibile
+
 Al fine di:
 - Aumentare qualità SW (cioè **qualità processo si traduce in qualità prodotto**)
 - Aumentare produttività
