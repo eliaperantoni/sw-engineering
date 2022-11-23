@@ -168,7 +168,7 @@ Metodi:
 - **Prototipi**. Durante fare di **specifica** per facilitare raccolta e specifica requisiti. Oppure durante **design** per esplorare soluzioni diverse.
 - **Consegna incrementale**. Vedi il processo incrementale. Non posso fare consegna incrementale senza un processo incrementale e viceversa, sono un po' sinonimi.
 
-## Agile
+## 03 - Agile
 Storicamente, la maggior parte dei SWs erano grandi, molto longevi e richiedevano specifiche precise. Poi (fine anni 90) sviluppo rapido, poco overhead nel processo SW e adattamento a requisiti incompleti, imprecisi o mutabili sono diventati aspetti più importanti.
 
 Agile è una filosofia di sviluppo software. La vediamo applicata ad un processo SW che regola e caratterizza le attività di specifica, design, implementazione e validazione. Dopo vedremo SCRUM, una tecnica di project management che segue la filosofia agile ma la applica alla fase di pianificazione del processo stesso.
@@ -212,6 +212,8 @@ Extreme programming, spinge lo sviluppo _iterativo_ all'estremo:
 **User story** = Storiella che racconta un **bisogno del cliente**
 
 **Task card** = Estratte dalle user story. Il team stima effort e risorse necessarie per ogni card. Il cliente le prioritizza e decide quali fare per il prossimo incremento. Difficile capire se sono state raccolte tutte le task card essenziali per un MVP.
+
+Si usano User Story e Task Card al posto del documento dei requisiti che invece è poco intuitivo e difficile da modificare.
 
 ---
 
@@ -267,4 +269,68 @@ Benefici:
 
 ---
 
-Scaling
+Come scalare Agile per progetti più grandi o longer lasting oppure a team più grandi o distribuiti?
+
+Scaling up = Un team più grande
+Scaling out = Più team
+
+Quando si scala Agile, bisogna continuare a seguire i principi fondamentali:
+- Pianificazione flessibile
+- Release frequenti
+- CI/CD
+- TDD
+- Buona comunicazione
+
+Agile non funziona benissimo per la **manutenzione** di progetti long-lasting:
+- Enfasi su poca documentazione
+- Membri del team che vanno via causano perdita di conoscenza
+- Cliente potrebbe non essere disponibile a rimanere coinvolto
+
+Quindi uso agile o plan driven se devo scalare?
+- Necessario avere specifica dettagliata prima di implementare? $\rightarrow$ Plan-Driven
+- Consegna incrementale fattibile? $\rightarrow$ Agile
+- Quanto grande è il progetto? Se può essere sviluppato da un piccolo team locale $\rightarrow$ Agile altrimenti $\rightarrow$ Plan-Driven
+
+---
+
+Riassumendo, i problemi o valutazioni da fare prima di usare Agile:
+- Sistema
+    - Quanto grande è il progetto e il team che lo sviluppa?
+    - Il progetto richiede tanta analisi e design dettagliato?
+    - Qual è la longevità del progetto?
+    - Il progetto è soggetto a regolamentazioni esterne?
+- Team
+    - Quanto le tecnologie (linguaggi/framework) si prestano ad un utilizzo agile
+    - Quanto skillati sono i membri del team
+    - Il team è distribuito? Se si, potrebbe essere necessario scrivere tanta documentazione
+- Organizzazione
+    - Il contratto richiede una specifica dettagliata
+    - L'organizzazione, e la sua cultura, accoglie bene lo sviluppo agile?
+    - Il cliente accetta di essere coinvolto?
+
+---
+
+IBM propone Agility at Scale Model (ASM) per scalare. Si usa una struttura a cipolla:
+- Core agile: Piccolo team lavora in modo pienamente agile sulle feature essenziali e sviluppate per prime
+- Disciplined agile delivery: feature secondarie sviluppate in un agile un po' più disciplinato
+- Agility at scale: tutto il resto si sviluppa su larga scala (team grandi e distributi) in modo ancora più disciplinato
+
+---
+
+Multi-team scrum. Tanti team usano scrum, li mettiamo anch'essi in comunicazione con una metodologia scrum. 
+- Ogni team ha un Product Owner e uno Scrum Master. 
+- Ogni team ha un Software Architect, tra di loro comunicano per definire la struttura completa del sistema. 
+- Le deadline degli sprint sono allineati.
+- Scum of scrums. Un rappresentante da ogni team partecipa ad uno scrum inter-team.
+
+---
+
+Resistenze a metodologie agili:
+- Project manager senza esperienza in agile riluttanti a correre il rischio
+- Grandi organizzazioni richiedono controlli di qualità e standard rigidi
+- Agile richiede sviluppatori tanto skllati
+- Resistenza culturale, diffidenza, conservatorismo
+
+# 04 - Requisiti
+
+# 05 - Architettura
