@@ -334,3 +334,111 @@ Resistenze a metodologie agili:
 # 04 - Requisiti
 
 # 05 - Architettura
+Capire come il SW dovrebbe essere organizzato cioè una struttura complessiva, identificando i componenti principali e le relazioni.
+
+Requirements engineering $\rightarrow$ Architectural design $\rightarrow$ Design
+
+Perché serve un'architettura:
+- Discuterne, ad alto livello, con i clienti
+- Decidere se i requisiti possono essere soddisfatti
+- Per riutilizzarla
+
+Soluzione possibile: diagramma a blocchi. Svantaggi:
+- Impreciso, non segue un linguaggio standard
+- Talvolta troppo astratto
+
+Utile per:
+- Facilita discussioni non tecniche (ad esempio con stakeholder)
+- Documenta l'architettura scelta
+
+Ogni modello è capace di mostrare soltanto una prospettiva tra:
+- Logical view: astrazioni principali viste come classi o oggetti
+- Physical view: come componenti hw e sw sono distribuiti tra i processori del sistema
+- Development view: come il sw è scomposto per poterlo sviluppare
+- Process view: come il sw è scomposto in processi in esecuzione a runtime
+
+Ora invece vediamo pattern noti a cui ispirarsi per decidere un'architettura.
+
+---
+
+**MVC**.
+
+Buona quando:
+- Ci più modi per **visualizzare** e **interagire** con i dati
+- Alcuni di questi modi si presenteranno in futuro
+- Il framework lo impone
+
+Pros & Cons:
+- $+$ Decoupling
+- $-$ Complessità aggiuntiva, poco adatto per SW piccoli
+
+---
+
+**Layered architecture**. Funzionalità organizzata a strati, ognuno utilizza solo i servizi offerti dal layer immediatamente più interno. Esempi: stack ISO/OSI, Android, iLearn.
+
+Buona quando:
+- Devo sviluppare sopra un sistema esistente (aggiungo uno strato)
+- Ho bisogno di garantire sicurezza (facile ragionare sui permessi che ogni strato ha, comunicazione limitata con lo strato immediatamente successivo)
+- Voglio assegnare lo sviluppo di ciascun layer a un team diverso
+
+Pros & Cons:
+- $+$ Permette di rimpiazzare un layer a patto di mantenere invariata l'interfaccia
+- $-$ Spesso bisogna un layer ha bisogno di fare dei "fori" e interagire direttamente con layer non immediatamente più interni
+- $-$ Performance inferiori, un sacco di delegazione
+
+---
+
+**Repository**. Data-centered, c'è un database centrale acceduto da diversi sotto-sistemi che non si parlano tra di loro. Esempio: Git.
+
+Buona quando:
+- Tanti dati, molto longevi
+- Sistemi data-driven che scatenano trigger quando si modificano i dati
+
+Pros & Cons:
+- $+$ Sistemi periferici eseguono autonomamente dagli altri
+- $+$ Cambiamenti in un sistema possono essere facilmente propagati a tutti gli altri
+- $+$ Gestione consistente dei dati perché sono in un punto solo
+- $-$ Introduzione di un single point of failure
+- $-$ Calo prestazioni, tutto deve passare dalla repository
+
+---
+
+**Client-Server**. 
+
+Buona quando:
+- Dati devono essere letti da tanti client
+- Servers possono essere replicati, quindi load balancing
+
+Pros & Cons:
+- $+$ Server possono essere distribuiti nel mondo
+- $+$ Unificazione dei servizi comuni a tanti client, evita ridondanza nei servizi offerti o implementati da ciascuno
+- $+$ I client conoscono il server ma non serve che il server conosca i client
+- $-$ Single point of failure nel server
+- $-$ Prestazioni imprevedibili (dipende stato rete)
+- $-$ Problemi organizzativi se server posseduti da organizzazioni diverse
+
+---
+
+**Peer to Peer**. In un certo senso, ogni peer è contemporaneamente client e server. Esempi: Torrent e Bitcoin. Molto fault-tolerant.
+
+---
+
+**Pipe and filter**. Trasformazioni applicate una dopo l'altra.
+
+Buona quando:
+- Devo fare analisi o trasformazioni di dati
+- Riesco a separare nettamente le varie fasi di analisi/trasformazione
+
+Pros & Cons:
+- $+$ Facile comprensione della pipeline
+- $+$ Riutilizzo di subset della pipeline
+- $+$ Facile modificare la pipeline
+- $+$ Pipeline può essere sequenziale o concorrente
+- $-$ Bisogna fissare API tra una fase e la successiva
+- $-$ Continuo encoding/decoding, con un formato deciso a priori, tra una fase e la successiva
+    - Prestazioni inferiori
+    - Riutilizzo reso più difficile se le strutture dati tra più fasi sono incompatibili
+
+---
+
+Architetture si possono combinare in modo gerarchico. Stesso componente potrebbe far parte di più architetture diverse e avere ruoli diversi in ciascuna.
