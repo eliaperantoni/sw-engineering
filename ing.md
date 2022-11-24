@@ -332,6 +332,138 @@ Resistenze a metodologie agili:
 - Resistenza culturale, diffidenza, conservatorismo
 
 # 04 - Requisiti
+I requisiti sono descrizioni delle funzionalità che il sistema dovrà fornire e vincoli sui modi con cui dovrà farlo. Riflettono i bisogni del cliente.
+
+Due tipi:
+- **Utente**: sono i requisiti così come forniti in linguaggio naturale dal cliente. Ambigui
+- **Sistema**: sono i requisiti strutturati e in linguaggio tecnico
+I requisiti di sistema _derivano_ da quelli utente, e poi si va anche nella direzione opposta per _validare_ i requisiti di sistema.
+
+**Stakeholder** è chiunque abbia un qualche interesse nel progetto da sviluppare.
+
+Una classificazione ortogonale a quella Utente vs Sistema è Funzionale vs Non-Funzionale.
+
+---
+
+**Requisiti funzionali**: funzionalità che il sistema deve fornire, come deve reagire agli stimoli o comportarsi in particolari situazioni. Si trovano di diversi livelli di astrazione (infatti questa classificazione è ortogonale a Utente vs Sistema). 
+
+Questi requisiti devono essere **completi** e **consistenti**, anche se stakeholder hanno opinioni diverse, perché altrimenti ci sono litigi. Inconsistenze sono spesso difficili da trovare.
+
+---
+
+**Requisiti non funzionali**: vincoli sui servizi offerti dal sistema. Si applicano spesso **all'intero sistema**. Hanno spesso un grande impatto e potrebbero essere spezzati in tanti requisiti funzionali.
+
+<img src="img/2022-11-24-16-39-01.png" width="400px"/>
+
+- Prodotto: vincoli sul SW creato. Esempio: performance, usabilità, sicurezza
+- Organizzazione: requisiti derivati da regole e procedure nell'organizzazione del client o la SW house. Esempi: linguaggi da utilizzare, ambiente in cui il SW verrà operato, etc
+- Esterni: requisiti che non dipendono da SW house. Esempi: ente esterno che regola, requisiti legislativi o etici
+
+<img src="img/2022-11-24-16-43-33.png" width="400px"/>
+
+Requisiti non funzionali sono spesso particolarmente vaghi. Bisogna decidere un target oggettivo e verificabile.
+
+---
+
+Processo che, per approssimazioni via via migliori, producono i requisiti:
+<img src="img/2022-11-24-16-47-31.png" width="400px"/>
+Una singola iterazione segue questo schema che avevamo già visto:
+<img src="img/2022-11-24-16-48-43.png" width="400px"/>
+
+## Elicitation
+Capire cosa fanno gli stakeholder e come il SW può aiutarli. Si cerca:
+- Il dominio del cliente
+- I servizi che il SW deve fornire
+- Vincoli vari
+
+Ostacoli:
+- Stakeholder hanno poco chiaro quello che vogliono o si esprimono male, con il loro linguaggio, danno cose per scontato, non vogliono parlare di cose private dell'organizzazione, etc
+- Stakeholder vogliono qualcosa di impossibile
+- Diversi stakeholder hanno conflitti di idee
+- Fattori politici ed organizzativi possono influenzare requisiti (manager genera requisito per funzionalità che gli darebbe più influenza o controllo)
+- Requisiti cambiano
+
+Interviste possono essere:
+- Domanda chiuse a scelta multipla
+- Domande aperte, nulla di prefissato
+- Un mix
+
+Consigli:
+- Essere di mente aperta e ascoltare lo stakeholder
+- Fare domande trampolino che scatenano discussioni invece di chiedere "ok cosa vuoi?"
+
+**Etnografia**: ingegnere del requisito si immerge nell'ambiente del cliente per capirlo meglio. Permette di rilevare meglio requisiti impliciti _esistenti_ e processi già in essere, però non permette di rilevare nuove funzionalità da aggiungere. Esempio: ingegnere lavora per un po' di tempo come infermiere.
+
+La fase di elicitation produce le stories e gli scenari.
+
+Una **story** è un testo narrativo molto astratto che parla di una specifica situazione realistica. Usa nomi di persone, etc.. Una sottoparte di una storia può essere sviluppata più nel dettaglio producendo uno scenario.
+
+Uno **scenario** è più strutturato, si specificano ad esempio:
+- Input
+- Output
+- Precondizioni
+- Postcondizioni
+- Funzionamento normale
+- Possibili problemi
+- Possibili attività concorrenti
+
+## Specification
+Si tratta di scrivere requisiti (di utente e di sistema) in un documento dei requisiti in modo preciso e completo perché potrebbe diventare parte del contratto.
+
+Ricorda che i requisiti spiegano solo **cosa** il sistema deve fare e con quali **vincoli**, non il **modo** in cui lo fa.
+
+Per specificare i requisiti posso usare:
+- Linguaggio naturale. Espressivo, intuitivo, universale. Però ambiguo. Linee guida:
+    - Usare formato e linguaggio standard e consistente
+    - Usare enfasi per evidenziare parti chiave
+    - Evitare lessico tecnico
+    - Spiegare perché il requisito serve e come mai è stato aggiunto
+- Struttura rigorosa, a tabella
+- Use case diagram
+
+Documento dei requisiti tipicamente è più leggero in sviluppi incrementali e/o agili. Può seguire uno standard, ad esempio IEEE.
+
+Chi usa il documento:
+- Cliente, per definire i requisiti e verificare che combacino con le loro richieste
+- Manager, per fare un preventivo e organizzare lo sviluppo
+- Sviluppatori, per sapere cosa devono implementare
+- Tester, per sapere cosa testare
+- Manutentori, per comprendere il SW già sviluppato in modo da mantenerlo
+
+## Validation
+Verificare che i requisiti rappresentino ciò che il cliente vuole davvero perché è molto costoso cambiare i requisiti dopo.
+
+Checklist:
+- **Validità**: il sistema fornisce le funzionalità che meglio risolvono necessità cliente?
+- **Consistenza**
+- **Completezza**
+- **Realismo**: ce la facciamo a soddisfare i requisiti nei tempi e nel budget?
+- **Verificabilità**: saremmo in grado di controllare se i requisiti sono soddisfatti dal SW prodotto?
+
+Tecniche:
+- Revisione manuale
+- Prototipo
+- Definizione test case
+    - Così vediamo se un requisito è verificabile
+    - Se il test case è difficile da scrivere, probabilmente la feature è difficile da implementare
+
+## Checking
+Perché i requisiti cambino?
+- Problema intrinsecamente difficile da definire interamente
+- Cambia la conoscenza del problema
+- Evoluzione ambiente di deploy, sia dal punto di vista tecnico che normativo
+- Conflitti tra chi compra e chi usa il sistema
+- Cambiano priorità degli stakeholder
+
+Tutto il sistema di requirements engineering deve supportare le modifiche:
+- Tracciabilitá dei requisiti con id univoci
+- Tracciare dipendenze tra requisiti, e tra requisiti e design
+
+Processo di cambiamento:
+- Il cambiamento proposto va discusso e verificare che sia valido e fattibile
+- Stima dei costi
+- Modifica documento dei requisiti e documenti di design
+- Implementazione
 
 # 05 - Architettura
 Capire come il SW dovrebbe essere organizzato cioè una struttura complessiva, identificando i componenti principali e le relazioni.
