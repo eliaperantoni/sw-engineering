@@ -574,3 +574,117 @@ Pros & Cons:
 ---
 
 Architetture si possono combinare in modo gerarchico. Stesso componente potrebbe far parte di più architetture diverse e avere ruoli diversi in ciascuna.
+
+# 06 - Testing
+Il testing ha due obiettivi:
+- Dimostrare che i requisiti siano soddisfatti (quindi opportuno almeno 1 testcase per ogni requisito)
+- Far emergere bug o difetti
+
+Parola "bug" deriva da insetti in buchi di schede perforate.
+
+Testing non può garantire assenza di bug ma solo la presenza. Però può fornire un livello di confidenza di correttezza che dipende da:
+- Ruolo del SW
+- Aspettative
+- Rapido rilascio nel mercato richiesto o meno
+
+Come alternativa al testing: revisione manuale senza eseguire. Vantaggi:
+- Non serve ambiente di esecuzione
+- Errori non mascherano quelli precedenti
+- Si può fare anche su codice che non compila
+- Rileva anche altri tipi di difetti (code style, inefficienza algoritmica, etc)
+
+Testing si suddivide in stadi:
+- A - Development Testing: Lo fanno sviluppatori durante sviluppo. Si alterna con il debugging
+    - A1 - Unit Testing
+    - A2 - Component Testing
+    - A3 - System Testing
+- B - Release Testing: Lo fa team separato prima di rilasciare
+- C - Acceptance Testing: Lo fa utente finale
+
+---
+
+A1 - Unit Testing
+
+Un'unità può essere: funzione, classe, piccolo componente con interfaccia semplice.
+
+Come testo completamente una classe? (Difficile coverage 100% per colpa dell'ereditarietà)
+- Chiamo tutti i metodi
+- Leggo/Scrivo tutti i field
+- Provo tutti gli stati possibili
+
+Struttura di un test:
+- Setup
+- Call
+- Assertion
+- [Teardown]
+
+Mock, da usare anche quando the-real-thing sarebbe comunque implementato. Garantisce stabilità nei test. Si realizza registrando nel framework di test il prossimo valore che una funzione deve restituire.
+
+Quali test case?
+- Ci vorrebbero test case sia normali e attesi, sia anormali e corner cases (per stressare il SW)
+- Partizionare gli input in class di equivalenza. Un solo test case per classe
+- Cercare di produrre tutti i possibili errori
+
+---
+
+A2 - Component Testing
+
+Componente sono diverse unità insieme. Si controlla l'interfaccia esposta dal componente e i fault rilevati indicano un errore nella comunicazione tra unità.
+
+Unità comunicano in modi diversi:
+- Parametri
+- Shared Memory
+- Procedure Call
+- Message Passing
+
+Errori di interfacciamento tra unità:
+- Uso incorretto dell'interfaccia (tipi sbagliati ad esempio)
+- Assunzione non soddisfatte
+- Tempismo sbagliato
+
+---
+
+A3 - System Testing
+
+Si mettono insieme i componenti per formare l'intero sistema. Eventuali fault indicano problemi di interfacciamento tra componenti.
+
+Questi test case possono essere basati su use-case individuati nella fase di requirements-engineering. Alcuni di essi potrebbero essere arredati di sequence-diagram per maggiore dettaglio.
+
+Politiche di coverage:
+- Linee di codice
+- Funzioni
+- Combinazione di funzione chiamate in sequenza
+- Input sia corretti che sbagliati
+
+---
+
+TDD. Già detto sopra. Ripetiamo i vantaggi:
+- Coverage viene "gratis"
+- Regressioni individuate subito
+- Facile debuggare perchè ogni case testa una singola feature
+- Test fungono da documentazione
+- Incoraggimento a un API semplice
+
+---
+
+B - Release Testing
+
+Lo fa un team diverso. Black box: non si guarda dentro il sistema ma lo si testa as-is per vedere se rispetta le specifiche.
+
+Simile a System Testing (in Development Testing) però qui il focus è sul verificare che i requisiti siano rispettati e non cercare di trovare bug.
+
+Si possono usare Scenarios e User Story direttamente come test case.
+
+Performance Testing = Controllare che SW possa supportare il carico previsto.
+
+---
+
+C - User Testing
+
+Fatto dagli utenti finali/cliente nell'ambiente di deploy loro e/o finale.
+
+1. Alpha - Fatto da pochi utenti, presso la SW house
+2. Beta - Fatto da più utenti
+3. Acceptance - Fatto dai clienti, che accettano o meno il SW consegnato e pagano
+
+Nei metodi Agile non c'è una fase separata di acceptance testing (3) perchè il cliente è sempre on-site e definisce i suoi test durante lo sviluppo. Ma siamo sicuri che il cliente on-site rappresenti un utente tipico del sistema?
