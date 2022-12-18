@@ -447,7 +447,7 @@ Tecniche:
     - Così vediamo se un requisito è verificabile
     - Se il test case è difficile da scrivere, probabilmente la feature è difficile da implementare
 
-## Checking
+## Changing
 Perché i requisiti cambino?
 - Problema intrinsecamente difficile da definire interamente
 - Cambia la conoscenza del problema
