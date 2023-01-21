@@ -88,7 +88,7 @@ Buono per:
 
 **Sviluppo Incrementale** ha attività di specifica, sviluppo e validazione interlacciate. SW consegnato per incrementi. Pianificazione delle attività stesse può essere **Plan Driven oppure Agile**.
 
-![]("img/2022-11-19-15-23-53.png")
+![](img/2022-11-19-15-23-53.png)
 
 Pros & Cons:
 - $+$ Costi ridotti per reagire ai cambiamenti
@@ -113,7 +113,7 @@ Attività:
     + Configurazione componente all-in-one
     + Adattamento componenti esistenti e sviluppo di nuovi, poi integrazione
 
-![]("img/2022-11-19-15-21-25.png")
+![](img/2022-11-19-15-21-25.png)
 
 Pros & Cons:
 - $+$ Basso costo di soldi e tempo
@@ -132,7 +132,7 @@ Opzionalmente preceduta da breve e cheap studio di fattibilità per decidere se 
 2. **Requirements specification**: **produrre un documento** che contiene i requisiti definiti formalmente. Requisiti sono due tipi: User (semplici da leggere, alto livello), System (dettagliati).
 3. **Requirements validation**: controllo che requisiti siano realistici, _consistenti_ e _completi_ (ci siano tutti) altrimenti modifico il documento.
 
-![]("img/2022-11-19-16-04-22.png")
+![](img/2022-11-19-16-04-22.png)
 
 ---
 
@@ -155,7 +155,7 @@ Le due fasi possono essere interlacciate. Cambiano molto da progetto a progetto,
 
 Nel processo waterfall in particolare (plan driven) testing potrebbe essere secondo modello a V, rispecchia le varie attività del processo stesso:
 
-![]("img/2022-11-19-16-18-07.png")
+![](img/2022-11-19-16-18-07.png)
 
 ---
 
@@ -252,7 +252,7 @@ Terminologia:
 
 Un singolo sprint funziona così:
 
-![]("img/2022-11-19-18-47-37.png")
+![](img/2022-11-19-18-47-37.png)
 
 - Product owner dice quali task dal product backlog sarebbero più prioritarie
 - Team decide quali task riesce a fare in questo sprint (anche usando la velocity stimata negli sprint precedenti) e le mette nello sprint backlog
@@ -354,13 +354,13 @@ Questi requisiti devono essere **completi** e **consistenti**, anche se stakehol
 
 **Requisiti non funzionali**: vincoli sui servizi offerti dal sistema. Si applicano spesso **all'intero sistema**. Hanno spesso un grande impatto e potrebbero essere spezzati in tanti requisiti funzionali.
 
-![]("img/2022-11-24-16-39-01.png")
+![](img/2022-11-24-16-39-01.png)
 
 - Prodotto: vincoli sul SW creato. Esempio: performance, usabilità, sicurezza
 - Organizzazione: requisiti derivati da regole e procedure nell'organizzazione del client o la SW house. Esempi: linguaggi da utilizzare, ambiente in cui il SW verrà operato, etc
 - Esterni: requisiti che non dipendono da SW house. Esempi: ente esterno che regola, requisiti legislativi o etici
 
-![]("img/2022-11-24-16-43-33.png")
+![](img/2022-11-24-16-43-33.png)
 
 Requisiti non funzionali sono spesso particolarmente vaghi. Bisogna decidere un target oggettivo e verificabile.
 
@@ -368,11 +368,11 @@ Requisiti non funzionali sono spesso particolarmente vaghi. Bisogna decidere un 
 
 Processo che, per approssimazioni via via migliori, producono i requisiti:
 
-![]("img/2022-11-24-16-47-31.png")
+![](img/2022-11-24-16-47-31.png)
 
 Una singola iterazione segue questo schema che avevamo già visto:
 
-![]("img/2022-11-24-16-48-43.png")
+![](img/2022-11-24-16-48-43.png)
 
 ## Elicitation
 Capire cosa fanno gli stakeholder e come il SW può aiutarli. Si cerca:
