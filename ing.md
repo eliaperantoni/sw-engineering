@@ -88,7 +88,7 @@ Buono per:
 
 **Sviluppo Incrementale** ha attività di specifica, sviluppo e validazione interlacciate. SW consegnato per incrementi. Pianificazione delle attività stesse può essere **Plan Driven oppure Agile**.
 
-<img width="400px" src="img/2022-11-19-15-23-53.png"/>
+![]("img/2022-11-19-15-23-53.png")
 
 Pros & Cons:
 - $+$ Costi ridotti per reagire ai cambiamenti
@@ -113,7 +113,7 @@ Attività:
     + Configurazione componente all-in-one
     + Adattamento componenti esistenti e sviluppo di nuovi, poi integrazione
 
-<img width="600px" src="img/2022-11-19-15-21-25.png"/>
+![]("img/2022-11-19-15-21-25.png")
 
 Pros & Cons:
 - $+$ Basso costo di soldi e tempo
@@ -132,7 +132,7 @@ Opzionalmente preceduta da breve e cheap studio di fattibilità per decidere se 
 2. **Requirements specification**: **produrre un documento** che contiene i requisiti definiti formalmente. Requisiti sono due tipi: User (semplici da leggere, alto livello), System (dettagliati).
 3. **Requirements validation**: controllo che requisiti siano realistici, _consistenti_ e _completi_ (ci siano tutti) altrimenti modifico il documento.
 
-<img width="400px" src="img/2022-11-19-16-04-22.png"/>
+![]("img/2022-11-19-16-04-22.png")
 
 ---
 
@@ -155,7 +155,7 @@ Le due fasi possono essere interlacciate. Cambiano molto da progetto a progetto,
 
 Nel processo waterfall in particolare (plan driven) testing potrebbe essere secondo modello a V, rispecchia le varie attività del processo stesso:
 
-<img width="600px" src="img/2022-11-19-16-18-07.png"/>
+![]("img/2022-11-19-16-18-07.png")
 
 ---
 
@@ -251,7 +251,8 @@ Terminologia:
 - ProductOwner: cliente partecipa indicando requisiti, prioritizzandoli e fornendo feedback
 
 Un singolo sprint funziona così:
-<img width="500px" src="img/2022-11-19-18-47-37.png"/>
+
+![]("img/2022-11-19-18-47-37.png")
 
 - Product owner dice quali task dal product backlog sarebbero più prioritarie
 - Team decide quali task riesce a fare in questo sprint (anche usando la velocity stimata negli sprint precedenti) e le mette nello sprint backlog
@@ -353,22 +354,25 @@ Questi requisiti devono essere **completi** e **consistenti**, anche se stakehol
 
 **Requisiti non funzionali**: vincoli sui servizi offerti dal sistema. Si applicano spesso **all'intero sistema**. Hanno spesso un grande impatto e potrebbero essere spezzati in tanti requisiti funzionali.
 
-<img src="img/2022-11-24-16-39-01.png" width="400px"/>
+![]("img/2022-11-24-16-39-01.png")
 
 - Prodotto: vincoli sul SW creato. Esempio: performance, usabilità, sicurezza
 - Organizzazione: requisiti derivati da regole e procedure nell'organizzazione del client o la SW house. Esempi: linguaggi da utilizzare, ambiente in cui il SW verrà operato, etc
 - Esterni: requisiti che non dipendono da SW house. Esempi: ente esterno che regola, requisiti legislativi o etici
 
-<img src="img/2022-11-24-16-43-33.png" width="400px"/>
+![]("img/2022-11-24-16-43-33.png")
 
 Requisiti non funzionali sono spesso particolarmente vaghi. Bisogna decidere un target oggettivo e verificabile.
 
 ---
 
 Processo che, per approssimazioni via via migliori, producono i requisiti:
-<img src="img/2022-11-24-16-47-31.png" width="400px"/>
+
+![]("img/2022-11-24-16-47-31.png")
+
 Una singola iterazione segue questo schema che avevamo già visto:
-<img src="img/2022-11-24-16-48-43.png" width="400px"/>
+
+![]("img/2022-11-24-16-48-43.png")
 
 ## Elicitation
 Capire cosa fanno gli stakeholder e come il SW può aiutarli. Si cerca:
@@ -688,3 +692,167 @@ Fatto dagli utenti finali/cliente nell'ambiente di deploy loro e/o finale.
 3. Acceptance - Fatto dai clienti, che accettano o meno il SW consegnato e pagano
 
 Nei metodi Agile non c'è una fase separata di acceptance testing (3) perchè il cliente è sempre on-site e definisce i suoi test durante lo sviluppo. Ma siamo sicuri che il cliente on-site rappresenti un utente tipico del sistema?
+
+# 07 - Refactoring
+
+Refactoring = Rendere SW più leggibile e semplice senza che dall'esterno si possa osservare alcun cambiamento. Rallenta e compensa il normale degradamento della qualità del codice che avviene a ogni modifica. Il refactoring rende anche più cheap la maintenance e ulteriori modifiche successive.
+
+Debito tecnico = A ogni modifica mi sto indebitando con lo sviluppatore che verrà dopo di me (perché il codice è leggermente più difficile da leggere). Il refactoring salda parte di questo debito.
+
+Re-engineering = Rifare un SW da capo. Si contrappone al refactoring che invece è un processo continuo che accompagna il SW per tutta la sua vita.
+
+Quando fare refactoring?
+
+- Senza una schedule precisa
+- Prima di aggiungere una feature (così sarà più facile farlo)
+- Dopo aver fixato un bug
+- Quando si trova un code smell
+
+Code Smell = Codice che tecnicamente funziona, però non segue buoni principi di design e degrada la qualità del codice
+
+- Codice duplicato $\rightarrow$ Estrarre metodo
+- Metodo con corpo molto lungo $\rightarrow$ Spezzare in metodi più piccoli
+- Abuso di `switch` case $\rightarrow$ Usare il dynamic dispatch con polimorfismo
+- Data clumping: stesso gruppetto di variabili che compare spesso insieme $\rightarrow$ Raggruppare in una classe coesa
+- Generalità speculativa: cioè rendere codice più generale di quanto serve in questo momento, nel caso servisse in futuro $\rightarrow$ Togliere
+- Dead code
+- Lunga lista di parametri
+- Try-Catch con `catch` vuoto
+
+Codice duplicato non è buono perché: 1) eventuali bug si ripetono 2) bisogna ricordarsi di ripetere le modifiche a tutti i cloni. Codice duplicato potrebbe non essere identico: potrebbe usare tipi o nomi di variabile diversi.
+
+I test automatici sono importantissimi per fare refactoring perché possiamo farlo con la peace-of-mind di non aver rotto niente.
+
+Refactoring complessi si fanno con tanti diversi refactoring più atomici. Quelli più semplici spesso sono automatizzati dall'IDE (rinominare classe, spostare file, etc).
+
+Esempi di refactoring:
+
+- Rinomina variabile, metodo o classe
+- Extract interface: sostituire l'uso di una classe concreta con una nuova interfaccia che contiene solo ciò di cui si ha bisogno. Ad esempio: uso di `ArrayList<T>` diventa `Collection<T>` se abbiamo bisogno solo di fare `add`, `remove` e `contains`.
+- Pull up: spostare membri da sottoclasse a superclasse
+- Extract method: sostituisce codice duplicato con chiamata a nuovo metodo
+- Move method: sposta metodo da una classe ad un'altra
+- Replace temp with query: sostituisce il calcolo di un'espressione poi salvato in una variabile locale con una chiamata ad un metodo che fa il calcolo. Così diventa disponibile a tutti i metodi.
+- Replace parameter with method: se un metodo può arrangiarsi a calcolare un valore, non dovrebbe richiedere che gli venga passato pre-calcolato nei parametri
+- Extract class: spostare pezzi di una classe troppo grande in una più piccola e coesa
+- Replace inheritance with composition+delegation: altrimenti si eredita più del necessario. Ad esempio: uno `Stack<T>` che eredita da `ArrayList<T>` erediterebbe anche `insertAt` che non ha senso in uno stack
+- Replace conditional with polymorphism: rimpiazza uno switch case con una chiamata dynamically dispatch con una nuova classe per ogni branch
+- Separate domain from presentation: togliere la business logic dal codice per la view
+
+# 08 - Project Management
+
+Essenziale perché il progetto deve rispettare vincoli:
+
+- Organizzativi
+- Di budget
+- Di tempo
+
+Un buon management non garantisce il successo del progetto ma un cattivo management lo destina al fallimento.
+
+Peculiarità del SW che rendono il management più difficile:
+
+- SW intangibile
+- Ogni progetto è unico e diverso
+- Processi variano e sono organization-specific
+
+Tassonomia del project management:
+
+- Dimensione dell'azienda (comunicazione informale vs gerarchie complesse e procedure formali)
+- Clienti interni vs esterni (cambia la formalità richiesta per comunicare)
+- Dimensione SW (cambia il numero e la dimensione dei team richiesti)
+- Tipo SW (un sw critico richiede che ogni scelta sia registrata e giustificata)
+- Cultura aziendale
+- Processo SW Agile vs Formale
+
+Attività:
+
+- Project Planning = Pianificare sviluppo e assegnare persone alle task
+- Risk Management = Individuare, analizzare e monitorare i rischi. Prepare piani di risposta
+- People Management = Decidere chi lavora al progetto e cosa fa
+- Reporting = Ai clienti e ai ranghi superiori dell'azienda
+- Proposal Writing = Fare il preventivo e una proposta di progetto
+
+## Risk Management
+
+Attività cruciale a causa dell'incertezza intrinseca dei progetti SW:
+
+- Requisiti imprecisi
+- Requisiti cambiano
+- Difficoltà nel fare stime
+- Differenze nelle skill individuali
+
+1. Identificazione. Rischi dovuti a diversi motivi:
+    - Stime (esempio: sottostimata la dimensione del software o il tempo richiesto per svilupparlo)
+    - Organizzazione (esempio: cambiano i manager o cala il budget per problemi finanziari)
+    - Persone (esempio: non si riesce ad assumere le persone con le skill necessarie)
+    - Tecnologia (esempio: database non performante quanto anticipato)
+    - Strumenti (esempio: strumenti di sviluppo diversi non si integrano come anticipato)
+2. Analisi probabilità e impatto. Da rifare continuamente perché la probabilità e l'impatto sono soggettive e potrebbero cambiare mano a mano che si ottengono nuove informazioni
+3. Preparazione piani di risposta
+    - Avoidance strategies: Per minimizzare la probabilità che il rischio di manifesti
+    - Minimization strategies: Per minimizzare l'impatto
+    - Contingency plan: Se l'impatto non può essere minimizzato, come rispondere
+4. Monitoraggio, processo che si ripete continuamente e fa uso di indicatori
+
+## Managing People
+
+Responsabilità del project manager trovare (e tenere) persone in gamba e fare in modo che la loro produttività possa essere massimizzata.
+
+Vantaggi di un team unito:
+
+- Quality standards del codice nascono naturalmente
+- Si impara l'uno dall'altro, colmando eventuali lacune
+- Share of knowledge: se un membro lascia il team, gli altri sanno continuare
+- Refactoring incoraggiato perché ognuno si sente responsabile dell'intera codebase
+
+Tipi di persone:
+
+- Task oriented: traggono entusiasmo dal lavoro stesso, poco socievoli
+- Self oriented: usano il lavoro come mezzo per un obiettivo secondario (diventare ricchi o potenti)
+- Interaction oriented: traggono entusiasmo dall'interazione con le persone. Molto socievoli ma non lavorano abbastanza
+
+In un buon gruppo ci deve essere un mix di questi
+
+## Project planning
+
+In un piano si stila: 1) lavoro da fare 2) chi lo fa 3) con che tempistiche 4) con quali prodotti ottenuti. Il piano serve ai manager per misurare il progresso e fare decisioni informate (soprattutto se il piano viene fatto prima di partire, permette di risolvere subito i primi problemi).
+
+Scheduling = Suddividere il lavoro in task e decidere come saranno realizzate. Cioè: tempo da calendario richiesto, effort (quanti giorni-uomo), chi lo fa, altre risorse richieste, una deadline, un punto di fine ben definito (meeting, produzione documento, passaggio di tutti i test, etc.)
+
+Task $\neq$ User Story. Il primo sà più da plan driven
+
+Bisogna cercare di schedulare le task in parallelo e con meno dipendenze possibile.
+
+Milestone = Punto importante nella schedule in cui verificare il progresso. Ad esempio: consegna del codice per essere testato.
+
+Deliverable = Cosa da consegnare al cliente. Tipicamente a una milestone può corrispondere o meno un deliverable.
+
+![](img/2023-01-21-15-04-48.png)
+
+![](img/2023-01-21-15-05-01.png)
+
+(I rettangoli con diagonale indicano una partecipazione parziale. Magari quella persona è già impegnata con un'altra task in un altro progetto)
+
+### Agile planning
+
+Contrapposto ad un planning rigido fatto subito, l'agile usa un processo di pianificazione interattivo e continuo. SW consegnato ad incrementi al cliente e le feature incluse in un incremento si decidono di volta in volta con il cliente che aiuta a prioritizzare.
+
+Planning incrementale su due fronti:
+
+- Release: decidere feature da includere in una release
+- Iteration: (più corto) decidere feature da includere in un incremento (non tutti gli incrementi corrispondono a release formali e grosse)
+
+![](img/2023-01-21-15-09-44.png)
+
+Release (qualche mese) = Tante iterations (ciascuna un paio di settimane)
+
+- Story Identification & Initial Estimation = Cliente e team scrivono le stories con le feature che il SW deve avere. Stories grandi sono spezzate in piccole. Viene assegnato un stima dell'effort necessario per completare ogni story. Con la velocity (la cui stima migliora con il tempo) si può stimare il tempo richiesto per sviluppare il sistema.
+- Release Planning = Si decide quali stories mettere nella prossima release e in che ordine svilupparle.
+- Iteration Planning = Si scelgono le stories della release da sviluppare in questa iterazione. Le stories sono divise in piccole task (ciascuna da 4-16 ore di sviluppo) e ognuno si sceglie quella che vuole. Ogni tanto si guarda il progresso raggiunto e si decide se togliere qualche stories (ma la deadline non cambia! al massimo si fanno meno feature).
+
+Pros & Cons del planning agile:
+- $+$ Tutti conoscono lo stato del progetto e sanno chi sta facendo cosa
+- $+$ I membri del team decidono le proprie task e quindi hanno più entusiasmo nel farle
+- $-$ Serve cliente disponibile
+- $-$ Serve client/organizzazione disposta a usare questo metodo più moderno
+- $-$ Serve team piccolo
