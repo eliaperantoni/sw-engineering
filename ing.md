@@ -332,7 +332,7 @@ Resistenze a metodologie agili:
 - Agile richiede sviluppatori tanto skllati
 - Resistenza culturale, diffidenza, conservatorismo
 
-# 04 - Requisiti
+## 04 - Requisiti
 I requisiti sono descrizioni delle funzionalità che il sistema dovrà fornire e vincoli sui modi con cui dovrà farlo. Riflettono i bisogni del cliente.
 
 Due tipi:
@@ -374,7 +374,7 @@ Una singola iterazione segue questo schema che avevamo già visto:
 
 ![](img/2022-11-24-16-48-43.png)
 
-## Elicitation
+### Elicitation
 Capire cosa fanno gli stakeholder e come il SW può aiutarli. Si cerca:
 - Il dominio del cliente
 - I servizi che il SW deve fornire
@@ -411,7 +411,7 @@ Uno **scenario** è più strutturato, si specificano ad esempio:
 - Possibili problemi
 - Possibili attività concorrenti
 
-## Specification
+### Specification
 Si tratta di scrivere requisiti (di utente e di sistema) in un documento dei requisiti in modo preciso e completo perché potrebbe diventare parte del contratto.
 
 Ricorda che i requisiti spiegano solo **cosa** il sistema deve fare e con quali **vincoli**, non il **modo** in cui lo fa.
@@ -434,7 +434,7 @@ Chi usa il documento:
 - Tester, per sapere cosa testare
 - Manutentori, per comprendere il SW già sviluppato in modo da mantenerlo
 
-## Validation
+### Validation
 Verificare che i requisiti rappresentino ciò che il cliente vuole davvero perché è molto costoso cambiare i requisiti dopo.
 
 Checklist:
@@ -451,7 +451,7 @@ Tecniche:
     - Così vediamo se un requisito è verificabile
     - Se il test case è difficile da scrivere, probabilmente la feature è difficile da implementare
 
-## Changing
+### Changing
 Perché i requisiti cambino?
 - Problema intrinsecamente difficile da definire interamente
 - Cambia la conoscenza del problema
@@ -469,7 +469,7 @@ Processo di cambiamento:
 - Modifica documento dei requisiti e documenti di design
 - Implementazione
 
-# 05 - Architettura
+## 05 - Architettura
 Capire come il SW dovrebbe essere organizzato cioè una struttura complessiva, identificando i componenti principali e le relazioni.
 
 Requirements engineering $\rightarrow$ Architectural design $\rightarrow$ Design
@@ -579,7 +579,7 @@ Pros & Cons:
 
 Architetture si possono combinare in modo gerarchico. Stesso componente potrebbe far parte di più architetture diverse e avere ruoli diversi in ciascuna.
 
-# 06 - Testing
+## 06 - Testing
 Il testing ha due obiettivi:
 - Dimostrare che i requisiti siano soddisfatti (quindi opportuno almeno 1 testcase per ogni requisito)
 - Far emergere bug o difetti
@@ -693,7 +693,7 @@ Fatto dagli utenti finali/cliente nell'ambiente di deploy loro e/o finale.
 
 Nei metodi Agile non c'è una fase separata di acceptance testing (3) perchè il cliente è sempre on-site e definisce i suoi test durante lo sviluppo. Ma siamo sicuri che il cliente on-site rappresenti un utente tipico del sistema?
 
-# 07 - Refactoring
+## 07 - Refactoring
 
 Refactoring = Rendere SW più leggibile e semplice senza che dall'esterno si possa osservare alcun cambiamento. Rallenta e compensa il normale degradamento della qualità del codice che avviene a ogni modifica. Il refactoring rende anche più cheap la maintenance e ulteriori modifiche successive.
 
@@ -739,7 +739,7 @@ Esempi di refactoring:
 - Replace conditional with polymorphism: rimpiazza uno switch case con una chiamata dynamically dispatch con una nuova classe per ogni branch
 - Separate domain from presentation: togliere la business logic dal codice per la view
 
-# 08 - Project Management
+## 08 - Project Management
 
 Essenziale perché il progetto deve rispettare vincoli:
 
@@ -772,7 +772,7 @@ Attività:
 - Reporting = Ai clienti e ai ranghi superiori dell'azienda
 - Proposal Writing = Fare il preventivo e una proposta di progetto
 
-## Risk Management
+### Risk Management
 
 Attività cruciale a causa dell'incertezza intrinseca dei progetti SW:
 
@@ -794,7 +794,7 @@ Attività cruciale a causa dell'incertezza intrinseca dei progetti SW:
     - Contingency plan: Se l'impatto non può essere minimizzato, come rispondere
 4. Monitoraggio, processo che si ripete continuamente e fa uso di indicatori
 
-## Managing People
+### Managing People
 
 Responsabilità del project manager trovare (e tenere) persone in gamba e fare in modo che la loro produttività possa essere massimizzata.
 
@@ -813,7 +813,7 @@ Tipi di persone:
 
 In un buon gruppo ci deve essere un mix di questi
 
-## Project planning
+### Project planning
 
 In un piano si stila: 1) lavoro da fare 2) chi lo fa 3) con che tempistiche 4) con quali prodotti ottenuti. Il piano serve ai manager per misurare il progresso e fare decisioni informate (soprattutto se il piano viene fatto prima di partire, permette di risolvere subito i primi problemi).
 
@@ -833,7 +833,7 @@ Deliverable = Cosa da consegnare al cliente. Tipicamente a una milestone può co
 
 (I rettangoli con diagonale indicano una partecipazione parziale. Magari quella persona è già impegnata con un'altra task in un altro progetto)
 
-### Agile planning
+#### Agile planning
 
 Contrapposto ad un planning rigido fatto subito, l'agile usa un processo di pianificazione interattivo e continuo. SW consegnato ad incrementi al cliente e le feature incluse in un incremento si decidono di volta in volta con il cliente che aiuta a prioritizzare.
 
@@ -856,3 +856,30 @@ Pros & Cons del planning agile:
 - $-$ Serve cliente disponibile
 - $-$ Serve client/organizzazione disposta a usare questo metodo più moderno
 - $-$ Serve team piccolo
+
+## 09 - UML
+
+Unified Modelling Language = Insieme di notazioni grafiche che supportano la _descrizione_ e il _design_ di sistemi software. Si astrae in modo da mostrare solo i componenti principali e le loro relazioni.
+
+Digrammi servono per:
+
+- Capire il sistema
+- Proporre soluzioni e discutere
+- Prendere decisioni
+- Documentare il sistema
+
+Sketch sulla lavagna $\rightarrow$ Diagrammi UML $\rightarrow$ Codice
+
+Tassonomia:
+
+- Structural (statico: struttura del codice del sw - dinamico: struttura del sw quando in esecuzione)
+    - Class diagram
+    - Object diagram
+- Behavioral
+    - Interaction (talvolta visto che branch root-level)
+        - Use-case diagram
+        - Sequence diagram
+    - Activity diagram, data driven
+    - State machine diagram, event driven
+
+(Per il resto, vedi il foglio scritto a mano)
