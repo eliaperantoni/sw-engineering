@@ -67,16 +67,20 @@ Nel **Code & Fix** si va per tentativi. Nessuna fase di analisi o design, si va 
 Il **Waterfall** è sempre **Plan Driven**. Specifica del prodotto e poi sviluppo, niente interlacciamento. Stampo industriale e manifatturiero. Output attività $i$ = Input attività $i+1$ e output freezati una volta all'attività $i+1$.
 
 Le attività sono:
-1. Raccolta e definizione requisiti
+1. Raccolta e definizione requisiti. Questa è la fase più critica, gli errori nati qui sono i più costosi da risolvere.
 2. Design
 3. Implementazione e test di ogni componente in isolamento
 4. Integrazione e test dei componenti insieme.
-5. Consegna al cliente e manutenzione.
+5. Consegna al cliente e manutenzione. Per manutezione si intende:
+   1. Correggiere errori
+   2. Nuove feature
+   3. Miglioramenti (prestazioni, stabilità, sicurezza, etc..)
+
 
 Pros & Cons:
 + $+$ Enfasi su analisi requisiti e design fatti bene, implementazione lasciata per ultima
-+ $+$ Disciplinato
-+ $-$ Funziona solo se requisiti sono chiari e stabili
++ $+$ Disciplinato. Possibile organizzare il lavoro su tanti team complessi.
++ $-$ Funziona solo se requisiti sono **chiari** e **stabili**
 + $-$ Difficile accomodare cambi ai requisiti. Visto che sono l'output della prima attività e tutti output sono freezati.
 
 Buono per:
@@ -94,6 +98,7 @@ Pros & Cons:
 - $+$ Costi ridotti per reagire ai cambiamenti
 - $+$ Rapidissima consegna delle feature essenziali, cliente inizia subito ad usare il SW
 - $+$ Maggiore feedback dagli stakeholder che usano subito il SW, requisiti per successivi incrementi saranno presi con maggiore consapevolezza
+- $+$ C'è la possibilità di correggiere precedenti requisiti sbagliati
 - $+$ Minore rischio di fallimento
 - $-$ Difficile tracciare progresso (anche quando pianificazione è plan driven) perché si reagisce ai cambiamenti
 - $-$ Costoso produrre continuamente documentazione
@@ -116,7 +121,8 @@ Attività:
 ![](img/2022-11-19-15-21-25.png)
 
 Pros & Cons:
-- $+$ Basso costo di soldi e tempo
+- $+$ Basso costo di soldi
+- $+$ Consegna rapida
 - $+$ Basso rischio
 - $+$ Poco sviluppo from scratch
 - $-$ Bassa qualità
@@ -137,10 +143,10 @@ Opzionalmente preceduta da breve e cheap studio di fattibilità per decidere se 
 ---
 
 - **Design**: tradurre specifica in descrizione struttura SW, modelli dati, interfacce tra componenti.
-    - **Design architettura**. Overall structure of SW, componenti e relazioni tra di loro
+    - **Design architettura**. Struttura generale del software e i componenti principali.
     - **Design db**
     - **Design interfacce**. Come comunicano i componenti. Con una interfaccia precisa, i componenti possono essere utilizzati senza conoscere l'implementazione e possono essere sviluppato in isolamento.
-    - **Selezione e design componenti**. Cerco componenti esistenti e pianifico modifiche necessarie, oppure design componenti da creare da zero.
+    - **Selezione e design componenti**. Descrivo i componenti ad alto livello di dettaglio. Potrei scegliere componenti esistenti o pianificarne di nuovi.
 - **Implementazione**: tradurre design in SW.
 
 Le due fasi possono essere interlacciate. Cambiano molto da progetto a progetto, a seconda del dominio (ad esempio un progetto embedded probabilmente non avrà db design)
@@ -149,9 +155,9 @@ Le due fasi possono essere interlacciate. Cambiano molto da progetto a progetto,
 
 **Validazione** è controllare che SW rispetti requisiti. Controlli manuali oppure test con dati. Test case derivanti dalla specifica iniziale.
 
-1. Component testing, in isolamento. Test case scritti da stesse persone che hanno sviluppato componente. Automatici (unit testing). Già fatto anche durante implementazione di solito.
-2. System testing, integro tutti componenti e testo sistema per intero.
-3. Acceptance testing, fatto dal cliente stesso con dati realistici. Fa emergere omissioni nella specifica.
+1. **Component o unit testing**, in isolamento. Test case scritti da stesse persone che hanno sviluppato componente. Automatici (unit testing). Già fatto anche durante implementazione di solito.
+2. **System testing**, integro tutti componenti e testo sistema per intero.
+3. **Acceptance testing**, fatto dal cliente stesso con dati realistici. Fa emergere omissioni nella specifica.
 
 Nel processo waterfall in particolare (plan driven) testing potrebbe essere secondo modello a V, rispecchia le varie attività del processo stesso:
 
@@ -164,38 +170,38 @@ Nel processo waterfall in particolare (plan driven) testing potrebbe essere seco
 - **Change anticipation**: accorgersi in fretta di possibili cambiamenti futuri, prima che diventino troppo costosi da risolvere (più si aspetta e più il SW evolve ed è difficile da modificare).
 - **Change tolerance**: processo fatto in modo da accomodare cambiamenti.
 
-Metodi:
-- **Prototipi**. Durante fare di **specifica** per facilitare raccolta e specifica requisiti. Oppure durante **design** per esplorare soluzioni diverse.
-- **Consegna incrementale**. Vedi il processo incrementale. Non posso fare consegna incrementale senza un processo incrementale e viceversa, sono un po' sinonimi.
+Metodi per ridurre la probabilità che ci sia da modificare i requisiti o attenuarne l'impatto:
+- **Validare bene i requisiti con dei prototipi prima di iniziare**
+- **Consegna (che richiede l'uso del processo) incrementale**, il processo accomoda facilmente i cambiamenti che sono anche meglio ponderati grazie al feedback del cliente che già usa il software
 
 ## 03 - Agile
-Storicamente, la maggior parte dei SWs erano grandi, molto longevi e richiedevano specifiche precise. Poi (fine anni 90) sviluppo rapido, poco overhead nel processo SW e adattamento a requisiti incompleti, imprecisi o mutabili sono diventati aspetti più importanti.
+Storicamente, la maggior parte dei SWs erano **grandi**, molto **longevi** e richiedevano **specifiche precise**. Poi (fine anni 90) **sviluppo rapido**, **poco overhead** nel processo SW e **adattamento** a **requisiti incompleti**, **imprecisi** o **mutabili** sono diventati aspetti più importanti.
 
 Agile è una filosofia di sviluppo software. La vediamo applicata ad un processo SW che regola e caratterizza le attività di specifica, design, implementazione e validazione. Dopo vedremo SCRUM, una tecnica di project management che segue la filosofia agile ma la applica alla fase di pianificazione del processo stesso.
 
 (Lo il processo agile è il processo incrementale visto in precedenza, ma esteso e più dettagliato)
 
 Principi:
-- Specifica, design, implementazione e testing sono interlacciati
-- Consegna incrementale (2,4 settimane)
-- Coinvolgimento cliente durante il processo. Fornisce e prioritizza i requisiti, decidendo anche quali includere nel prossimo incremento. Valuta il SW mano a mano che è consegnato e fornisce feedback
-- Valorizzare skill del team, lasciando che proceda a modo suo senza forzare un processo rigido
-- Flessibilità, aspettarsi cambiamenti quindi sviluppare sistema in modo da accoglierli
-- Semplicità, sia nel prodotto che nel processo
-- Ridotta documentazione
-- Estensivo utilizzo di tool di supporto e automatizzazione
+- Specifica, design, implementazione e testing sono **interlacciati**
+- **Consegna incrementale** (2,4 settimane)
+- **Coinvolgimento cliente** durante il processo. Fornisce e prioritizza i requisiti, decidendo anche quali includere nel prossimo incremento. Valuta il SW mano a mano che è consegnato e fornisce feedback
+- **Valorizzare skill** del team, lasciando che proceda a modo suo senza forzare un processo rigido
+- **Flessibilità**, aspettarsi cambiamenti quindi sviluppare sistema in modo da accoglierli
+- **Semplicità**, sia nel prodotto che nel processo
+- Ridotta **documentazione**
+- Estensivo utilizzo di tool di supporto e **automatizzazione**
 
 Agile manifesto:
 - Persone e interazioni umane $>$ processi e strumenti
 - SW funzionante $>$ documentazione
-- Collaborazione con cliente $>$ negoziazione con cliente
-- Flessibilità $>$ rispettare il piano
+- **Collaborazione** con cliente $>$ **negoziazione** con cliente
+- Flessibilità e prontezza $>$ seguire un piano
 
 Applicabilità:
-- Prodotto medio-piccolo
-- Cliente disponibile ad essere coinvolto
-- Pochi vincoli esterni
-- Sviluppo agile allacciato ad un management agile
+- Prodotto medio-**piccolo**
+- Cliente **disponibile** ad essere coinvolto
+- Pochi vincoli **esterni**
+- Sviluppo agile allacciato ad un **management** agile
 
 Extreme programming, spinge lo sviluppo _iterativo_ all'estremo:
 - Versioni buildate molto spesso
@@ -209,28 +215,34 @@ Extreme programming, spinge lo sviluppo _iterativo_ all'estremo:
 
 ---
 
-**User story** = Storiella che racconta un **bisogno del cliente**
+**User story** = **Storiella** che racconta un utilizzo del software dal punto di vista del cliente
 
-**Task card** = Estratte dalle user story. Il team stima effort e risorse necessarie per ogni card. Il cliente le prioritizza e decide quali fare per il prossimo incremento. Difficile capire se sono state raccolte tutte le task card essenziali per un MVP.
+**Scenario** = Fornisce maggiore **dettaglio** ad una sotto-sezione di una user story
 
-Si usano User Story e Task Card al posto del documento dei requisiti che invece è poco intuitivo e difficile da modificare.
+**Task card** = Ottenute dal team di sviluppo **spezzando** le user story e gli scenari. È un pezzo di lavoro atomico. Il team stima effort e risorse necessarie per ogni card. Il cliente le prioritizza e decide quali fare per il prossimo incremento.
+
+Difficile capire se sono state raccolte tutte le task card necessarie per la release (completezza). In questo ci aiuta il cliente.
+
+Si usano user story e scenari al posto del documento dei requisiti che invece è poco intuitivo e difficile da modificare.
 
 ---
 
-**Test Driven Development** = Test case, strettamente legati ai requisiti (in particolare, scenari), sono scritti prima del codice ed eseguiti _automaticamente durante_ lo sviluppo. Vengono definiti con l'aiuto del cliente e validati da esso.
+**Test Driven Development** = Test case, strettamente legati ai requisiti (user stories e scenari), sono scritti **prima** del codice ed eseguiti **automaticamente** durante lo sviluppo. Vengono definiti con l'aiuto del **cliente** e validati da esso.
 
-**Refactoring** fatto quando si vede una chance di migliorare la qualità del codice, anche se non immediatamente necessario. Serve perché qualità deteriora andando avanti a fare modifiche locali.
-- Riorganizzazione classi e package
+**Refactoring** rallenta il degradamento della qualità del codice (leggibilità principalmente) e ne ripristina un buono stato. Necessario perché il software deteriora mano a mano che si fanno modifiche. Esempi:
+
+- Riorganizzazione
 - De-duplicazione
-- Estrazione funzioni
-- Rinominazione attributi e funzioni
+- Rinominazione variabili, metodi, classi
 
 Pair Programming = Due sviluppatori allo stesso PC. Coppie create dinamicamente e cambiate di tanto in tanto. Vantaggi:
 - Collective ownership, gli sviluppatori si sentono responsabili dell'intera codebase e ci tengono alla sua qualità
-- Code review implicita e informale
-- Refactoring incoraggiato
+- Code review implicita, informale e meno costosa
+- Refactoring incoraggiato, vedi collective ownership
 - Condivisione della conoscenza implicitamente
 - Non necessariamente inefficiente, evidence shows
+
+// TODO Riprendi da qua
 
 ---
 
@@ -402,7 +414,7 @@ La fase di elicitation produce le stories e gli scenari.
 
 Una **story** è un testo narrativo molto astratto che parla di una specifica situazione realistica. Usa nomi di persone, etc.. Una sottoparte di una storia può essere sviluppata più nel dettaglio producendo uno scenario.
 
-Uno **scenario** è più strutturato, si specificano ad esempio:
+Uno **scenario** è più strutturato e dettagliato. Solitamente si mappa in una sotto-sezione di una user story. Si specificano ad esempio:
 - Input
 - Output
 - Precondizioni
@@ -819,8 +831,6 @@ In un piano si stila: 1) lavoro da fare 2) chi lo fa 3) con che tempistiche 4) c
 
 Scheduling = Suddividere il lavoro in task e decidere come saranno realizzate. Cioè: tempo da calendario richiesto, effort (quanti giorni-uomo), chi lo fa, altre risorse richieste, una deadline, un punto di fine ben definito (meeting, produzione documento, passaggio di tutti i test, etc.)
 
-Task $\neq$ User Story. Il primo sà più da plan driven
-
 Bisogna cercare di schedulare le task in parallelo e con meno dipendenze possibile.
 
 Milestone = Punto importante nella schedule in cui verificare il progresso. Ad esempio: consegna del codice per essere testato.
@@ -846,9 +856,9 @@ Planning incrementale su due fronti:
 
 Release (qualche mese) = Tante iterations (ciascuna un paio di settimane)
 
-- Story Identification & Initial Estimation = Cliente e team scrivono le stories con le feature che il SW deve avere. Stories grandi sono spezzate in piccole. Viene assegnato un stima dell'effort necessario per completare ogni story. Con la velocity (la cui stima migliora con il tempo) si può stimare il tempo richiesto per sviluppare il sistema.
-- Release Planning = Si decide quali stories mettere nella prossima release e in che ordine svilupparle.
-- Iteration Planning = Si scelgono le stories della release da sviluppare in questa iterazione. Le stories sono divise in piccole task (ciascuna da 4-16 ore di sviluppo) e ognuno si sceglie quella che vuole. Ogni tanto si guarda il progresso raggiunto e si decide se togliere qualche stories (ma la deadline non cambia! al massimo si fanno meno feature).
+- Story Identification & Initial Estimation = Cliente e team scrivono le stories e gli scenari con le feature che il SW deve avere. Stories grandi sono spezzate in piccole ed eventualmente si aggiunge dettaglio a qualhe sezione usando gli scenari. Viene assegnato un stima dell'effort necessario per completare ogni story. Con la velocity (la cui stima migliora con il tempo) si può stimare il tempo richiesto per sviluppare il sistema.
+- Release Planning = Si decide quali stories/scenari mettere nella prossima release e in che ordine svilupparle.
+- Iteration Planning = Si scelgono le stories/scenari della release da sviluppare in questa iterazione. Le stories/scenari sono divise in piccole task card (ciascuna da 4-16 ore di sviluppo, è un'unità di lavoro atomica) e ognuno si sceglie quella che vuole. Ogni tanto si guarda il progresso raggiunto e si decide se togliere qualche stories/scenario (ma la deadline non cambia! al massimo si fanno meno feature).
 
 Pros & Cons del planning agile:
 - $+$ Tutti conoscono lo stato del progetto e sanno chi sta facendo cosa
