@@ -217,13 +217,21 @@ Extreme programming, spinge lo sviluppo _iterativo_ all'estremo:
 
 **User story** = **Storiella** che racconta un utilizzo del software dal punto di vista del cliente
 
-**Scenario** = Fornisce maggiore **dettaglio** ad una sotto-sezione di una user story
+**Scenario** = Fornisce maggiore **dettaglio** ad una sotto-sezione di una user story. Contiene solitamente:
 
-**Task card** = Ottenute dal team di sviluppo **spezzando** le user story e gli scenari. È un pezzo di lavoro atomico. Il team stima effort e risorse necessarie per ogni card. Il cliente le prioritizza e decide quali fare per il prossimo incremento.
+- Input
+- Output
+- Precondizioni
+- Postcondizioni
+- Funzionamento normale
+- Possibili problemi
+- Possibili attività concorrenti
 
-Difficile capire se sono state raccolte tutte le task card necessarie per la release (completezza). In questo ci aiuta il cliente.
+Il cliente prioritizza le user stories e gli scenari.
 
 Si usano user story e scenari al posto del documento dei requisiti che invece è poco intuitivo e difficile da modificare.
+
+**Task card** = Ottenute dal team di sviluppo **spezzando** le user story e gli scenari. È un pezzo di lavoro atomico. Il team stima effort e risorse necessarie per ogni card.
 
 ---
 
@@ -242,15 +250,13 @@ Pair Programming = Due sviluppatori allo stesso PC. Coppie create dinamicamente 
 - Condivisione della conoscenza implicitamente
 - Non necessariamente inefficiente, evidence shows
 
-// TODO Riprendi da qua
-
 ---
 
 Ora applichiamo la filosofia agile per fare project management, cioè la pianificazione del processo di sviluppo SW. La chiamiamo SCRUM e si contrappone alla metodologia di pianificazione Plan-Driven.
 
 Secondo SCRUM, lo sviluppo avviene secondo queste fasi:
-1. **Fase iniziale**: specifica iniziale del prodotto e design di architettura SW base
-2. Serie di sprint, ogni sprint produce incremento
+1. **Fase iniziale**: specifica iniziale del prodotto e design architettura di base
+2. Serie di **sprint**, ogni sprint produce incremento
 3. **Fase finale**: si completa il SW e si scrive documentazione
 
 Terminologia:
@@ -258,9 +264,9 @@ Terminologia:
 - Sprint: periodo di sviluppo di 2-4 settimane
 - Sprint backlog: cose da fare nello sprint corrente
 - Scrum: meeting giornaliero
-- Velocity: quante cose il team riesce a fare in uno sprint
+- Velocity: stima delle cose il team riesce a fare in uno sprint
 - ScrumMaster: persona all'interno del team che verifica che SCRUM sia rispettato
-- ProductOwner: cliente partecipa indicando requisiti, prioritizzandoli e fornendo feedback
+- ProductOwner: cliente che partecipa: indicando requisiti, prioritizzandoli e fornendo feedback
 
 Un singolo sprint funziona così:
 
@@ -268,113 +274,129 @@ Un singolo sprint funziona così:
 
 - Product owner dice quali task dal product backlog sarebbero più prioritarie
 - Team decide quali task riesce a fare in questo sprint (anche usando la velocity stimata negli sprint precedenti) e le mette nello sprint backlog
-- Sprint. Durata fissa. Team isolato dal cliente che parla solo attraverso lo scrum master. Meeting giornalieri (scrums) molto brevi (10 minuti) in cui i membri del team si scambiano informazioni:
+- Sprint. Durata fissa. Team isolato dal cliente. Eventuali comunicazioni dall'esterno sono filtrate dallo scrum master. Meeting giornalieri (scrums) molto brevi (10 minuti) in cui i membri del team si scambiano informazioni:
     - Cosa ho fatto ieri
     - Cosa faccio oggi
     - Difficoltà incontrate
-- Alla fine dello sprint si dice come è andata e come migliorare
+- Alla fine dello sprint:
+    - Si valuta com'è andato lo sprint. Se e come si poteva fare di meglio
+    - Si consegna l'incremento al cliente che lo valuta e fornisce feedback
+
 
 Benefici:
-- Delivery on-time e quindi maggiore fiducia del cliente che è più incline a fornire feedback
-- Maggiore visibilità dello stato del progetto, rispetto ad un processo di sviluppo agile privo di management di qualsiasi tipo
+- **Delivery on-time** (non si allunga **mai** lo sprint, al massimo si consegnano meno feature) e quindi maggiore fiducia del cliente che è più incline a fornire buon feedback
+- **Visibilità e comunicazione**: tutti i membri del team sanno chi sta facendo cosa e c'è grande comunicazione, grazie agli SCRUM
 
-È importante che la comunicazione tra membri del team e con il cliente sia efficacie e rapida. Se si fa da remoto, bisogna dotarsi di strumenti per comunicare.
+È importante che la comunicazione tra membri del team e con il cliente sia efficacie e rapida. Se si fa da remoto, bisogna dotarsi di strumenti per comunicare. Anche la CI/CD assicura un processo piu fluido in caso di sviluppatori non co-locati.
 
 ---
 
-Come scalare Agile per progetti più grandi o longer lasting oppure a team più grandi o distribuiti?
+Agile non funziona benissimo per la **manutenzione** di progetti long-lasting:
+
+- Difficile modificare software:
+  - A causa della **ridotta documentazione**
+  - Membri del team potrebbero andarsene: perdita di conoscenza sulle decisioni e le **motivazioni** fatte in passato
+- Cliente potrebbe non essere disponibile a **rimanere coinvolto a lungo**
+
+---
+
+Come **scalare** Agile per progetti più grandi o longevi oppure a team più grandi o distribuiti?
 
 Scaling up = Un team più grande
 Scaling out = Più team
 
-Quando si scala Agile, bisogna continuare a seguire i principi fondamentali:
-- Pianificazione flessibile
-- Release frequenti
-- CI/CD
-- TDD
-- Buona comunicazione
+IBM propone **Agility at Scale** Model (ASM) per scalare. Si usa una struttura a **cipolla**:
+- **Core** agile: Piccolo team lavora in modo pienamente agile sulle feature essenziali e sviluppate per prime
+- **Disciplined** agile delivery: Feature secondarie sviluppate in un agile un po' più disciplinato
+- Agility at **scale**: tutto il resto si sviluppa su larga scala (team grandi e distributi) in modo ancora più disciplinato
 
-Agile non funziona benissimo per la **manutenzione** di progetti long-lasting:
-- Enfasi su poca documentazione
-- Membri del team che vanno via causano perdita di conoscenza
-- Cliente potrebbe non essere disponibile a rimanere coinvolto
+**Multi-team scrum**. Tanti team usano scrum, li mettiamo anch'essi in comunicazione con una metodologia scrum. 
 
-Quindi uso agile o plan driven se devo scalare?
-- Necessario avere specifica dettagliata prima di implementare? $\rightarrow$ Plan-Driven
-- Consegna incrementale fattibile? $\rightarrow$ Agile
-- Quanto grande è il progetto? Se può essere sviluppato da un piccolo team locale $\rightarrow$ Agile altrimenti $\rightarrow$ Plan-Driven
-
----
-
-Riassumendo, i problemi o valutazioni da fare prima di usare Agile:
-- Sistema
-    - Quanto grande è il progetto e il team che lo sviluppa?
-    - Il progetto richiede tanta analisi e design dettagliato?
-    - Qual è la longevità del progetto?
-    - Il progetto è soggetto a regolamentazioni esterne?
-- Team
-    - Quanto le tecnologie (linguaggi/framework) si prestano ad un utilizzo agile
-    - Quanto skillati sono i membri del team
-    - Il team è distribuito? Se si, potrebbe essere necessario scrivere tanta documentazione
-- Organizzazione
-    - Il contratto richiede una specifica dettagliata
-    - L'organizzazione, e la sua cultura, accoglie bene lo sviluppo agile?
-    - Il cliente accetta di essere coinvolto?
-
----
-
-IBM propone Agility at Scale Model (ASM) per scalare. Si usa una struttura a cipolla:
-- Core agile: Piccolo team lavora in modo pienamente agile sulle feature essenziali e sviluppate per prime
-- Disciplined agile delivery: feature secondarie sviluppate in un agile un po' più disciplinato
-- Agility at scale: tutto il resto si sviluppa su larga scala (team grandi e distributi) in modo ancora più disciplinato
-
----
-
-Multi-team scrum. Tanti team usano scrum, li mettiamo anch'essi in comunicazione con una metodologia scrum. 
 - Ogni team ha un Product Owner e uno Scrum Master. 
-- Ogni team ha un Software Architect, tra di loro comunicano per definire la struttura completa del sistema. 
-- Le deadline degli sprint sono allineati.
-- Scum of scrums. Un rappresentante da ogni team partecipa ad uno scrum inter-team.
+- Ogni team ha un Software **Architect**, tra di loro comunicano per definire la struttura completa del sistema. 
+- Le **deadline** degli sprint sono **allineate**.
+- **Scum of scrums**. Un rappresentante da ogni team partecipa ad uno scrum inter-team.
 
 ---
 
-Resistenze a metodologie agili:
-- Project manager senza esperienza in agile riluttanti a correre il rischio
-- Grandi organizzazioni richiedono controlli di qualità e standard rigidi
-- Agile richiede sviluppatori tanto skllati
-- Resistenza culturale, diffidenza, conservatorismo
+Problemi e valutazioni da fare prima di usare Agile:
+
+- Sistema
+  - Quanto **grande** è il progetto e il team che lo sviluppa?
+  - Il progetto richiede tanta **analisi** e design dettagliato?
+  - Qual è la **longevità** del progetto?
+  - Il progetto è soggetto a **regolamentazioni** esterne?
+- Team
+  - Le **tecnologie** (linguaggi/framework) si prestano ad un utilizzo agile?
+  - Quanto **skillati** sono i membri del team?
+  - Il team è **distribuito**? Se si, potrebbe essere necessario scrivere tanta documentazione
+- Organizzazione
+  - Il contratto richiede una **specifica** dettagliata
+  - L'organizzazione, e la sua **cultura**, accoglie bene lo sviluppo agile?
+  - Il cliente accetta di essere **coinvolto**?
+
+---
+
+Resistenze principali a metodologie agili:
+- **Grandi** organizzazioni richiedono **controlli di qualità** e **standard** rigidi. Troppa burocrazia non funziona con Agile
+- Richiesti sviluppatori tanto **skillati**
+- Resistenza, diffidenza, conservatorismo. A causa della **cultura** aziendale o dei **manager inesperti**
 
 ## 04 - Requisiti
-I requisiti sono descrizioni delle funzionalità che il sistema dovrà fornire e vincoli sui modi con cui dovrà farlo. Riflettono i bisogni del cliente.
+I requisiti sono descrizioni delle funzionalità che il sistema dovrà fornire e vincoli sui modi con cui dovrà farlo. Riflettono i bisogni degli stakeholder (tutte le persone che hanno un qualche interesse nel software da realizzare).
 
-Due tipi:
-- **Utente**: sono i requisiti così come forniti in linguaggio naturale dal cliente. Ambigui
-- **Sistema**: sono i requisiti strutturati e in linguaggio tecnico
+Tassonomia:
+- **Utente**: sono i requisiti così come forniti dal cliente. Linguaggio naturale e diagrammi. Ambigui.
+  - Il sistema deve generare un report ogni mese contenete la lista dei farmaci prescritti
+
+- **Sistema**: sono i requisiti **strutturati** e **dettagliati**. Anche colmando quelle cose lasciate non-specificate dal cliente.
+  - L'ultimo giorno di ogni mese, dopo le 17:30, il sistema deve generare una lista dove è presente una riga per ciascun farmaco mai prescritto durante il mese appena trascorso. In ogni riga è riportato il nome del famarco, la categoria, il numero di volte che è stato prescritto, il numero di pazienti univoci a cui è stato prescritto [...]
+
+
 I requisiti di sistema _derivano_ da quelli utente, e poi si va anche nella direzione opposta per _validare_ i requisiti di sistema.
 
-**Stakeholder** è chiunque abbia un qualche interesse nel progetto da sviluppare.
-
-Una classificazione ortogonale a quella Utente vs Sistema è Funzionale vs Non-Funzionale.
+Un'altra tassonomia ortogonale alla precedente è *funzionali* vs *non-funzionali*.
 
 ---
 
 **Requisiti funzionali**: funzionalità che il sistema deve fornire, come deve reagire agli stimoli o comportarsi in particolari situazioni. Si trovano di diversi livelli di astrazione (infatti questa classificazione è ortogonale a Utente vs Sistema). 
 
-Questi requisiti devono essere **completi** e **consistenti**, anche se stakeholder hanno opinioni diverse, perché altrimenti ci sono litigi. Inconsistenze sono spesso difficili da trovare.
+Questi requisiti devono essere **completi** e **consistenti** (potrebbe essere difficile se gli stakeholder hanno idee contrastanti).
 
 ---
 
-**Requisiti non funzionali**: vincoli sui servizi offerti dal sistema. Si applicano spesso **all'intero sistema**. Hanno spesso un grande impatto e potrebbero essere spezzati in tanti requisiti funzionali.
+**Requisiti non funzionali**: vincoli sui servizi offerti dal sistema. Si applicano spesso **all'intero sistema**. Hanno spesso un grande impatto. Potrebbero essere spezzati in tanti requisiti funzionali. Tipicamente trascurati dal cliente.
 
 ![](img/2022-11-24-16-39-01.png)
 
-- Prodotto: vincoli sul SW creato. Esempio: performance, usabilità, sicurezza
-- Organizzazione: requisiti derivati da regole e procedure nell'organizzazione del client o la SW house. Esempi: linguaggi da utilizzare, ambiente in cui il SW verrà operato, etc
-- Esterni: requisiti che non dipendono da SW house. Esempi: ente esterno che regola, requisiti legislativi o etici
+- Prodotto: vincoli sul SW creato
+  - Facilità d'uso
+  - Accessibilità
+  - Efficienza
+  - Affidabilità
+  - Sicurezza
+
+- Organizzazione: requisiti derivati da regole e procedure nell'organizzazione del client o nel team di sviluppo
+  - Linguaggi e tool da usare
+  - Sistema operativo, tecnologie o altri vincoli sull'ambiente di deployment
+
+- Esterni: requisiti che non dipendono nè dal committente nè dal team di sviluppo
+  - Leggi
+  - Etica
+
 
 ![](img/2022-11-24-16-43-33.png)
 
-Requisiti non funzionali sono spesso particolarmente vaghi. Bisogna decidere un target oggettivo e verificabile.
+Requisiti non funzionali sono spesso descritti con termini vaghi. Ad esempio: cosa significa che il software è "facile" da usare? Sarebbe meglio scriverli in modo quantificabile e verificabile: "ci vogliono X ore di training per poi saper usare il software commettendo massimo Y errori al giorno".
+
+Alcuni esempi di metriche da usare:
+
+- Velocità $\rightarrow$ Transazioni/s, tempo di risposta 
+- Dimensione $\rightarrow$ MB
+- Facilità d'uso $\rightarrow$ Tempo di addestramento
+- Affidabilità (quanto spesso ci sono guasti) $\rightarrow$ Tempo medio prima di un guasto, percentuale di downtime
+- Robustezza (quanto sono impattanti i guasti) $\rightarrow$ Tempo per il riavvio dopo un incidente, probabilità di corruzione dei dati dopo un crash
+- Portabilità $\rightarrow$ Architetture CPU o sistemi operativi supportati
 
 ---
 
@@ -387,17 +409,17 @@ Una singola iterazione segue questo schema che avevamo già visto:
 ![](img/2022-11-24-16-48-43.png)
 
 ### Elicitation
-Capire cosa fanno gli stakeholder e come il SW può aiutarli. Si cerca:
-- Il dominio del cliente
-- I servizi che il SW deve fornire
-- Vincoli vari
+Si cerca di capire:
+- Il **dominio** del cliente
+- Servizi e **funzionalità** che il software dovrà esporre
+- **Vincoli** vari
 
 Ostacoli:
-- Stakeholder hanno poco chiaro quello che vogliono o si esprimono male, con il loro linguaggio, danno cose per scontato, non vogliono parlare di cose private dell'organizzazione, etc
-- Stakeholder vogliono qualcosa di impossibile
-- Diversi stakeholder hanno conflitti di idee
-- Fattori politici ed organizzativi possono influenzare requisiti (manager genera requisito per funzionalità che gli darebbe più influenza o controllo)
-- Requisiti cambiano
+- Stakeholder hanno **poco chiaro** quello che vogliono o si **esprimono male**, con il loro linguaggio, danno cose per **scontato**, non vogliono parlare di cose **private** dell'organizzazione, etc
+- Stakeholder vogliono qualcosa di **impossibile**
+- Diversi stakeholder hanno **conflitti** di idee
+- Fattori **politici** ed organizzativi possono influenzare requisiti (manager genera requisito per funzionalità che gli darebbe più influenza o controllo)
+- Requisiti **cambiano**
 
 Interviste possono essere:
 - Domanda chiuse a scelta multipla
@@ -405,351 +427,330 @@ Interviste possono essere:
 - Un mix
 
 Consigli:
-- Essere di mente aperta e ascoltare lo stakeholder
-- Fare domande trampolino che scatenano discussioni invece di chiedere "ok cosa vuoi?"
+- Essere di **mente aperta** e ascoltare lo stakeholder
+- Fare domande **trampolino** che scatenano discussioni invece di chiedere "ok cosa vuoi?"
 
 **Etnografia**: ingegnere del requisito si immerge nell'ambiente del cliente per capirlo meglio. Permette di rilevare meglio requisiti impliciti _esistenti_ e processi già in essere, però non permette di rilevare nuove funzionalità da aggiungere. Esempio: ingegnere lavora per un po' di tempo come infermiere.
 
-La fase di elicitation produce le stories e gli scenari.
-
-Una **story** è un testo narrativo molto astratto che parla di una specifica situazione realistica. Usa nomi di persone, etc.. Una sottoparte di una storia può essere sviluppata più nel dettaglio producendo uno scenario.
-
-Uno **scenario** è più strutturato e dettagliato. Solitamente si mappa in una sotto-sezione di una user story. Si specificano ad esempio:
-- Input
-- Output
-- Precondizioni
-- Postcondizioni
-- Funzionamento normale
-- Possibili problemi
-- Possibili attività concorrenti
-
 ### Specification
-Si tratta di scrivere requisiti (di utente e di sistema) in un documento dei requisiti in modo preciso e completo perché potrebbe diventare parte del contratto.
+(In un processo Agile, questa fase è striminzita perché non serve un documento di specifica super-formale. Ci si limita a raccogliere user stories e scenari in una fase che sta a cavallo tra la elicitation e questa: la specification.)
 
-Ricorda che i requisiti spiegano solo **cosa** il sistema deve fare e con quali **vincoli**, non il **modo** in cui lo fa.
+Si tratta di **scrivere** requisiti (di utente e di sistema) in un **documento dei requisiti** in modo preciso e completo perché potrebbe diventare parte del contratto.
+
+Ricorda che i requisiti spiegano solo **cosa** il sistema deve fare e con quali **vincoli**, non il **modo** in cui lo fa. Anche se certe volte potrebbe essere difficile seguire questa regola. Ad esempio: requisiti o software esterni impongono particolari architetture o tecnologie.
 
 Per specificare i requisiti posso usare:
-- Linguaggio naturale. Espressivo, intuitivo, universale. Però ambiguo. Linee guida:
-    - Usare formato e linguaggio standard e consistente
-    - Usare enfasi per evidenziare parti chiave
-    - Evitare lessico tecnico
-    - Spiegare perché il requisito serve e come mai è stato aggiunto
-- Struttura rigorosa, a tabella
-- Use case diagram
+- Linguaggio **naturale**. Espressivo, intuitivo, universale. Però ambiguo. Linee guida:
+    - Usare **formato** e **lessico** standard e **consistente**
+    - Usare **enfasi** per evidenziare parti chiave
+    - Evitare lessico **tecnico**
+    - Spiegare **perché** il requisito serve e come mai è stato aggiunto
+- Struttura **rigorosa**, a tabella
+- **Use-case** diagram. Possono essere integrati con sequence-diagrams per scendere più nel dettaglio in alcuni use-case
 
-Documento dei requisiti tipicamente è più leggero in sviluppi incrementali e/o agili. Può seguire uno standard, ad esempio IEEE.
+Il documento può seguire uno standard. Ad esempio l'IEEE ne propone uno.
 
 Chi usa il documento:
-- Cliente, per definire i requisiti e verificare che combacino con le loro richieste
-- Manager, per fare un preventivo e organizzare lo sviluppo
-- Sviluppatori, per sapere cosa devono implementare
-- Tester, per sapere cosa testare
-- Manutentori, per comprendere il SW già sviluppato in modo da mantenerlo
+- **Cliente**, per definire i requisiti e **verificare** che combacino con le loro richieste
+- **Manager**, per fare un **preventivo** e **organizzare** lo sviluppo
+- **Sviluppatori**, per sapere cosa devono **implementare**
+- **Tester**, per sapere cosa **testare**
+- **Manutentori**, per **comprendere** il SW già sviluppato in modo da mantenerlo
 
 ### Validation
-Verificare che i requisiti rappresentino ciò che il cliente vuole davvero perché è molto costoso cambiare i requisiti dopo.
+Fase in cui si verifica che i requisiti rappresentino ciò che il cliente vuole davvero perché è molto costoso cambiare i requisiti dopo.
 
 Checklist:
-- **Validità**: il sistema fornisce le funzionalità che meglio risolvono necessità cliente?
-- **Consistenza**
-- **Completezza**
+- **Validità**: il sistema fornisce le funzionalità che meglio risolvono le necessità del cliente?
+- **Consistenza**: i conflitti si contraddicono?
+- **Completezza**: rimane ambiguità irrisolta?
 - **Realismo**: ce la facciamo a soddisfare i requisiti nei tempi e nel budget?
-- **Verificabilità**: saremmo in grado di controllare se i requisiti sono soddisfatti dal SW prodotto?
+- **Verificabilità**: saremo in grado di controllare se i requisiti sono soddisfatti dal software prodotto?
 
 Tecniche:
-- Revisione manuale
-- Prototipo
-- Definizione test case
+- Revisione **manuale**
+- **Prototipo**, usando strumenti che permettono di ottenere molto rapidamente un mock del software da sviluppare per vedere se è davvero quello che serve al cliente
+- Definizione **test case**
     - Così vediamo se un requisito è verificabile
     - Se il test case è difficile da scrivere, probabilmente la feature è difficile da implementare
 
 ### Changing
-Perché i requisiti cambino?
-- Problema intrinsecamente difficile da definire interamente
-- Cambia la conoscenza del problema
-- Evoluzione ambiente di deploy, sia dal punto di vista tecnico che normativo
-- Conflitti tra chi compra e chi usa il sistema
-- Cambiano priorità degli stakeholder
+Perché i requisiti cambiano?
+- Problema **intrinsecamente difficile** da definire interamente
+- Cambia la **conoscenza** del problema
+- **Evoluzione ambiente** di deploy, sia dal punto di vista tecnico che normativo
+- Conflitti tra chi **compra** e chi **usa** il sistema
+- **Cambiano priorità** degli stakeholder
 
 Tutto il sistema di requirements engineering deve supportare le modifiche:
-- Tracciabilitá dei requisiti con id univoci
-- Tracciare dipendenze tra requisiti, e tra requisiti e design
+- **Tracciabilitá** dei requisiti con **id** univoci
+- Tracciare **dipendenze** tra requisiti, e tra requisiti e design
 
 Processo di cambiamento:
-- Il cambiamento proposto va discusso e verificare che sia valido e fattibile
-- Stima dei costi
-- Modifica documento dei requisiti e documenti di design
+- Il cambiamento proposto va discusso per verificare che sia **necessario** e **realizzabile**
+- Stima dei **costi**
+- Modifica documento dei requisiti, design e altra documentazione
 - Implementazione
 
 ## 05 - Architettura
-Capire come il SW dovrebbe essere organizzato cioè una struttura complessiva, identificando i componenti principali e le relazioni.
+
+Si tratta di capire come il software dovrebbe essere organizzato identificando una struttura complessiva, i componenti principali e le loro relazioni.
 
 Requirements engineering $\rightarrow$ Architectural design $\rightarrow$ Design
 
 Perché serve un'architettura:
-- Discuterne, ad alto livello, con i clienti
-- Decidere se i requisiti possono essere soddisfatti
-- Per riutilizzarla
+- Discuterne, ad alto livello, con i **clienti**
+- Facilitare il **design** fatto in seguito
+- Decidere se i **requisiti** possono essere **soddisfatti**
+- Per **riutilizzarla** in altri progetti
+- Funge da **documentazione**
 
-Soluzione possibile: diagramma a blocchi. Svantaggi:
-- Impreciso, non segue un linguaggio standard
-- Talvolta troppo astratto
+Soluzione possibile: **diagramma a blocchi**. Svantaggi:
+- **Inconsistente**, non segue un linguaggio standard
+- Talvolta **troppo astratto**, cioè non fornisce sufficiente informazione dettagliata (ad esempio: che tipo di relazione c'è tra due componenti)
 
-Utile per:
-- Facilita discussioni non tecniche (ad esempio con stakeholder)
-- Documenta l'architettura scelta
-
-Ogni modello è capace di mostrare soltanto una prospettiva tra:
-- Logical view: astrazioni principali viste come classi o oggetti
-- Physical view: come componenti hw e sw sono distribuiti tra i processori del sistema
-- Development view: come il sw è scomposto per poterlo sviluppare
-- Process view: come il sw è scomposto in processi in esecuzione a runtime
+Ogni modello è capace di mostrare soltanto una **prospettiva** tra:
+- **Logical** view (classes): i componenti e le classi che compongono il software
+- **Process** view (objects): come il software è scomposto in processi in esecuzione a runtime
+- **Physical** view (processors): come i processi sono allocati sui processori hardware
+- **Development** view: come il sw è scomposto per poterlo sviluppare
 
 Ora invece vediamo pattern noti a cui ispirarsi per decidere un'architettura.
 
----
+## MVC
 
-**MVC**.
+Permette diverse **visualizzazioni**, **logiche di interazione** e **tecniche di conservazione dei dati** in diverse **combinazioni**. Queste possono evolvere abbastanza indipendentemente e potrebbero presentarsene di nuove in **futuro**. Adottato e imposto da diversi **framework**.
 
-Buona quando:
-- Ci più modi per **visualizzare** e **interagire** con i dati
-- Alcuni di questi modi si presenteranno in futuro
-- Il framework lo impone
+- $+$ **Separazione** delle responsabilità
+- $-$ **Complessità** aggiuntiva, poco adatto per software piccoli
 
-Pros & Cons:
-- $+$ Decoupling
-- $-$ Complessità aggiuntiva, poco adatto per SW piccoli
+## Layered architecture
 
----
+Funzionalità organizzata a **strati**, ognuno utilizza solo i servizi offerti dai layer adiacenti. Esempi: stack ISO/OSI, Android, iLearn.
 
-**Layered architecture**. Funzionalità organizzata a strati, ognuno utilizza solo i servizi offerti dal layer immediatamente più interno. Esempi: stack ISO/OSI, Android, iLearn.
+- $+$ Permette di **rimpiazzare** un layer a patto di rispettare l'interfaccia
+- $+$ Facile implementare una funzionalità **aggiuntiva** su un sistema **esistente**: mi basta sviluppare uno strato da mettere in cima
+- $+$ Facile garantire una politica di **sicurezza** visto che posso fare un'analisi concentrandomi su uno strato per volta
+- $+$ Facile distribuire lo **sviluppo**: uno strato per team
+- $-$ Si è spesso tentati dal fare dei "**fori**" e interagire direttamente con layer non adiacenti
+- $-$ **Performance** inferiori, a causa della tanta delegazione
 
-Buona quando:
-- Devo sviluppare sopra un sistema esistente (aggiungo uno strato)
-- Ho bisogno di garantire sicurezza (facile ragionare sui permessi che ogni strato ha, comunicazione limitata con lo strato immediatamente successivo)
-- Voglio assegnare lo sviluppo di ciascun layer a un team diverso
+## Repository
 
-Pros & Cons:
-- $+$ Permette di rimpiazzare un layer a patto di mantenere invariata l'interfaccia
-- $-$ Spesso bisogna un layer ha bisogno di fare dei "fori" e interagire direttamente con layer non immediatamente più interni
-- $-$ Performance inferiori, un sacco di delegazione
+C'è un **database centrale** acceduto da **diversi sotto-sistemi** che non si parlano tra di loro. Si presta bene a sistemi centrati su grandi quantità di dati (magari anche longevi). Esempio: Git.
 
----
+- $+$ Sistemi periferici eseguono **indipendentemente** dagli altri
+- $+$ Eventi, cambiamenti dei dati e messaggi possono essere facilmente **propagati** a tutti gli altri (non servono connessioni N:N stile prodotto cartesiano, è la repository che fa da centro-smistamento)
+- $+$ Facile gestire **consistenza** dei dati perché sono in un punto solo
+- $-$ Introduzione di un **single point of failure**
+- $-$ Calo **prestazioni**, tutto deve passare dalla repository
 
-**Repository**. Data-centered, c'è un database centrale acceduto da diversi sotto-sistemi che non si parlano tra di loro. Esempio: Git.
+## Client-Server
 
-Buona quando:
-- Tanti dati, molto longevi
-- Sistemi data-driven che scatenano trigger quando si modificano i dati
+Server mettono a disposizione i servizi utilizzati dai client.
 
-Pros & Cons:
-- $+$ Sistemi periferici eseguono autonomamente dagli altri
-- $+$ Cambiamenti in un sistema possono essere facilmente propagati a tutti gli altri
-- $+$ Gestione consistente dei dati perché sono in un punto solo
-- $-$ Introduzione di un single point of failure
-- $-$ Calo prestazioni, tutto deve passare dalla repository
+- $+$ Server possono essere **distribuiti geograficamente** per ridurre la latenza e distribuire il carico
+- $+$ **Unificazione dei servizi comuni**, ove opportuno, per evitare che due server forniscano inutilmente le stesse funzionalità
+- $+$ I client conoscono il server ma **non serve che il server conosca i client**
+- $-$ **Single point of failure** nel server
+- $-$ **Prestazioni imprevedibili** (dipende stato rete)
+- $-$ Problemi **organizzativi** se server posseduti o controllati da organizzazioni diverse
 
----
+## Peer to Peer
 
-**Client-Server**. 
+In un certo senso, ogni peer è contemporaneamente client e server. Architettura molto robusta e resiliente a incidenti. Esempi: Torrent e Bitcoin. Molto fault-tolerant.
 
-Buona quando:
-- Dati devono essere letti da tanti client
-- Servers possono essere replicati, quindi load balancing
+## Pipe and filter
 
-Pros & Cons:
-- $+$ Server possono essere distribuiti nel mondo
-- $+$ Unificazione dei servizi comuni a tanti client, evita ridondanza nei servizi offerti o implementati da ciascuno
-- $+$ I client conoscono il server ma non serve che il server conosca i client
-- $-$ Single point of failure nel server
-- $-$ Prestazioni imprevedibili (dipende stato rete)
-- $-$ Problemi organizzativi se server posseduti da organizzazioni diverse
+Trasformazioni e filtri applicati in sequenza ai dati. Si presta a sistemi che devono analizzare e trasformare grosse moli di dati e le varie fasi di questa pipeline sono facilmente separabili.
 
----
-
-**Peer to Peer**. In un certo senso, ogni peer è contemporaneamente client e server. Esempi: Torrent e Bitcoin. Molto fault-tolerant.
+- $+$ Facile **comprensione** della pipeline
+- $+$ Facile **modificare** la pipeline
+- $+$ Facile **riutilizzo** di subset della pipeline
+- $+$ Pipeline può essere **sequenziale** o **concorrente**
+- $+$ Dati possono entrare nella pipeline anche se ci sono elaborazioni in corso **più avanti**
+- $-$ Inadeguato per sistemi **interattivi**
+- $-$ Bisogna **fissare** in modo chiaro **API** e **formati dati** dei componenti
+- $-$ Continuo **encoding/decoding** per passare i dati da un componente all'altro
+    - **Prestazioni** inferiori
+    - **Riutilizzo** di componenti o subset della pipeline è **più difficile o meno immediato** se i formati utilizzati sono **incompatibili**
 
 ---
 
-**Pipe and filter**. Trasformazioni applicate una dopo l'altra.
-
-Buona quando:
-- Devo fare analisi o trasformazioni di dati
-- Riesco a separare nettamente le varie fasi di analisi/trasformazione
-
-Pros & Cons:
-- $+$ Facile comprensione della pipeline
-- $+$ Riutilizzo di subset della pipeline
-- $+$ Facile modificare la pipeline
-- $+$ Pipeline può essere sequenziale o concorrente
-- $-$ Bisogna fissare API tra una fase e la successiva
-- $-$ Continuo encoding/decoding, con un formato deciso a priori, tra una fase e la successiva
-    - Prestazioni inferiori
-    - Riutilizzo reso più difficile se le strutture dati tra più fasi sono incompatibili
-
----
-
-Architetture si possono combinare in modo gerarchico. Stesso componente potrebbe far parte di più architetture diverse e avere ruoli diversi in ciascuna.
+Architetture si possono combinare in modo gerarchico. Stesso componente potrebbe **far parte di più architetture diverse** e avere **ruoli diversi** in ciascuna.
 
 ## 06 - Testing
 Il testing ha due obiettivi:
-- Dimostrare che i requisiti siano soddisfatti (quindi opportuno almeno 1 testcase per ogni requisito)
-- Far emergere bug o difetti
+- **Dimostrare** che i **requisiti siano soddisfatti** (quindi opportuno almeno 1 test-case per ogni requisito)
+- **Far emergere bug** o difetti
 
 Parola "bug" deriva da insetti in buchi di schede perforate.
 
-Testing non può garantire assenza di bug ma solo la presenza. Però può fornire un livello di confidenza di correttezza che dipende da:
-- Ruolo del SW
-- Aspettative
-- Rapido rilascio nel mercato richiesto o meno
+Testing non può garantire **assenza** di bug ma solo la **presenza**. Però può fornire un livello di **confidenza** di correttezza che dipende da:
+- Ruolo e criticità del SW
+- **Aspettative** del cliente
+- Rapido rilascio nel **mercato** richiesto o meno
 
-Come alternativa al testing: revisione manuale senza eseguire. Vantaggi:
-- Non serve ambiente di esecuzione
-- Errori non mascherano quelli precedenti
-- Si può fare anche su codice che non compila
-- Rileva anche altri tipi di difetti (code style, inefficienza algoritmica, etc)
-
-Testing si suddivide in stadi:
-- A - Development Testing: Lo fanno sviluppatori durante sviluppo. Si alterna con il debugging
-    - A1 - Unit Testing
-    - A2 - Component Testing
-    - A3 - System Testing
-- B - Release Testing: Lo fa team separato prima di rilasciare
-- C - Acceptance Testing: Lo fa utente finale
+Come alternativa al testing: revisione **manuale** senza eseguire il software. Vantaggi:
+- Non serve preparare un **ambiente** di esecuzione
+- Errori non **mascherano** quelli precedenti
+- Si può fare anche su codice che **non compila**
+- Rileva anche **altri tipi** di **difetti** (code style, inefficienza algoritmica, etc)
 
 ---
-
-A1 - Unit Testing
-
-Un'unità può essere: funzione, classe, piccolo componente con interfaccia semplice.
-
-Come testo completamente una classe? (Difficile coverage 100% per colpa dell'ereditarietà)
-- Chiamo tutti i metodi
-- Leggo/Scrivo tutti i field
-- Provo tutti gli stati possibili
 
 Struttura di un test:
-- Setup
-- Call
-- Assertion
-- [Teardown]
 
-Mock, da usare anche quando the-real-thing sarebbe comunque implementato. Garantisce stabilità nei test. Si realizza registrando nel framework di test il prossimo valore che una funzione deve restituire.
+- **Setup**
+- **Call** (produce risultati)
+- **Assertion** (si controlla che i risultati siano quelli corretti)
+- **Teardown**
 
-Quali test case?
-- Ci vorrebbero test case sia normali e attesi, sia anormali e corner cases (per stressare il SW)
-- Partizionare gli input in class di equivalenza. Un solo test case per classe
-- Cercare di produrre tutti i possibili errori
+Opportuno usare **mock** per soddisfare le dipendenze dell'entità sotto test, anche quando sarebbe già disponibile la versione **concreta**. Questo garantisce **ripetibilità** e **indipendenza** dei test. Si realizza con i framework che permettono di creare classi finte i cui metodi o variabili restituiscono **valori impostati precedentemente dallo sviluppatore**.
 
----
+Linee guida per scrivere i test case:
 
-A2 - Component Testing
+- Ci vorrebbero test case che testano situazioni e input sia **normali** e attesi, sia **anormali** e corner cases (per **stressare** il software)
+- **Partizionare** gli input in classi di equivalenza. Pochissimi test case (o anche solo uno) per ogni classe:
+  - Il valore centrale della classe
+  - I valori vicino ai confini con altre classi
+- Cercare di generare **tutti i possibili errori**
+- Cercare di generare sia **output** molto **piccoli** che molto **grossi**
+- Cercare di generare **output invalidi**
+- Cercare di far andare dei buffer in **overflow**
+- Provare a usare **puntatori nulli**
+- Ripetere gli stessi input o situazioni **più volte**
+- Usare **tempistiche** diverse (ad esempio, avvio dei thread in sequenze diverse)
+- Quando uso collezioni, opportuno testare:
+  - Con collezioni **vuote**
+  - Con collezioni di **diversa lunghezza**
+  - Pescando elementi dalla **testa**, **centro** e **coda** della collezione
 
-Componente sono diverse unità insieme. Si controlla l'interfaccia esposta dal componente e i fault rilevati indicano un errore nella comunicazione tra unità.
+Il Test Driven Development (**TDD**) è bellino, tipico soprattutto di Agile. Vantaggi:
 
-Unità comunicano in modi diversi:
-- Parametri
-- Shared Memory
-- Procedure Call
-- Message Passing
-
-Errori di interfacciamento tra unità:
-- Uso incorretto dell'interfaccia (tipi sbagliati ad esempio)
-- Assunzione non soddisfatte
-- Tempismo sbagliato
-
----
-
-A3 - System Testing
-
-Si mettono insieme i componenti per formare l'intero sistema. Eventuali fault indicano problemi di interfacciamento tra componenti.
-
-Questi test case possono essere basati su use-case individuati nella fase di requirements-engineering. Alcuni di essi potrebbero essere arredati di sequence-diagram per maggiore dettaglio.
-
-Politiche di coverage:
-- Linee di codice
-- Funzioni
-- Combinazione di funzione chiamate in sequenza
-- Input sia corretti che sbagliati
+- **Coverage** viene "gratis"
+- **Regressioni** individuate subito
+- Facile debuggare perchè ogni case testa una **singola** feature. Sò subito dove concentrare le indagini
+- Test fungono da **documentazione**
+- Incoraggimento a un **API** **semplice**
 
 ---
 
-TDD. Già detto sopra. Ripetiamo i vantaggi:
-- Coverage viene "gratis"
-- Regressioni individuate subito
-- Facile debuggare perchè ogni case testa una singola feature
-- Test fungono da documentazione
-- Incoraggimento a un API semplice
+Testing si suddivide in stadi:
+- A - **Development** Testing: Lo fanno sviluppatori durante sviluppo. Si alterna con il debugging. L'obiettivo di questa fase è **far emergere i bug**.
+    - A1 - **Unit** Testing
+    - A2 - **Component** Testing
+    - A3 - **System** Testing
+- B - **Release** Testing: Lo fa team separato prima di rilasciare
+- C - **Acceptance** o **User** Testing: Lo fa utente finale nel suo ambiente
 
----
+### A1 - Unit Testing
 
-B - Release Testing
+Si testa un'unità **atomica** che può essere: funzione, classe, piccolo componente con interfaccia semplice. Eventuali fault indicherebbero errori dovuti all'unità stessa.
 
-Lo fa un team diverso. Black box: non si guarda dentro il sistema ma lo si testa as-is per vedere se rispetta le specifiche.
+Come testo completamente una classe? (Difficile coverage 100% per colpa dell'ereditarietà)
+- Chiamo **tutti i metodi**
+- Leggo/Scrivo **tutti i field**
+- Provo tutti gli **stati** possibili
 
-Simile a System Testing (in Development Testing) però qui il focus è sul verificare che i requisiti siano rispettati e non cercare di trovare bug.
+### A2 - Component Testing
 
-Si possono usare Scenarios e User Story direttamente come test case.
+Componente sono diverse unità collegate insieme. Si controlla l'interfaccia esposta dal componente. Eventuali fault indicherebbero un errore nella comunicazione tra le unità.
 
-Performance Testing = Controllare che SW possa supportare il carico previsto.
+Unità possono comunicare in modi diversi:
+- **Parametri**
+- **Shared Memory**
+- **Procedure Call**
+- **Message Passing**
 
----
+Possibili errori di interfacciamento tra unità:
+- Uso incorretto dell'**interfaccia** (tipi sbagliati ad esempio)
+- **Assunzione** non soddisfatte
+- **Tempismo** sbagliato
 
-C - User Testing
+### A3 - System Testing
 
-Fatto dagli utenti finali/cliente nell'ambiente di deploy loro e/o finale.
+Si mettono insieme i componenti per formare l'intero sistema. Eventuali fault indicherebbero problemi di interfacciamento tra componenti.
 
-1. Alpha - Fatto da pochi utenti, presso la SW house
-2. Beta - Fatto da più utenti
-3. Acceptance - Fatto dai clienti, che accettano o meno il SW consegnato e pagano
+Questi test case possono essere basati su **use-case** individuati nella fase di requirements-engineering. Alcuni di essi potrebbero essere arredati di **sequence-diagram** per maggiore dettaglio.
 
-Nei metodi Agile non c'è una fase separata di acceptance testing (3) perchè il cliente è sempre on-site e definisce i suoi test durante lo sviluppo. Ma siamo sicuri che il cliente on-site rappresenti un utente tipico del sistema?
+Opportuno che vengano testate:
+- Tutte (o quasi) le **linee** di codice
+- Tutte le **funzioni**, o **combinazioni** di chiamate a esse, accessibili per l'utente dall'**interfaccia grafica**
+- Per gli **input che può fornire direttamente l'utente**, testare sia quelli **corretti** sia quelli **inattesi**
+
+### B - Release Testing
+
+Lo fa un **team diverso**. **Black box**: non si guarda dentro il sistema ma lo si testa as-is per vedere se rispetta le specifiche.
+
+Simile a System Testing (A3) però qui il focus è sul verificare che i **requisiti siano rispettati** e non cercare di trovare bug.
+
+Se sono disponibili **scenarios** e **user stories**, possiamo usare direttamente quelli come situazioni da testare perché raccontano proprio un'interazione dell'utente con il software.
+
+**Performance** Testing = Controllare che il software possa supportare il carico e rispondere nei tempi previsti.
+
+### C - Acceptance/User Testing
+
+Fatto dagli utenti finali o dal committente:
+
+1. $\alpha$ fatto da pochi utenti, presso la software house
+2. $\beta$ si coinvolge un numero maggiore di utenti
+3. Acceptance fatto dal cliente presso il suo ambiente. Accetta o meno il software consegnato e paga
+
+Nei metodi **Agile** **non c'è una fase separata di Acceptasnce/User testing** (C) perchè il cliente è sempre on-site e collabora per tutto il tempo con il team di sviluppo per definire i test-case e verificarne il successo. C'è il rischio però che il product owner non rappresenti il **tipico utente finale** che andrà poi a utilizzare veramente il software.
 
 ## 07 - Refactoring
 
-Refactoring = Rendere SW più leggibile e semplice senza che dall'esterno si possa osservare alcun cambiamento. Rallenta e compensa il normale degradamento della qualità del codice che avviene a ogni modifica. Il refactoring rende anche più cheap la maintenance e ulteriori modifiche successive.
+Refactoring = Rendere software più **leggibile** e **semplice** **senza** che dall'esterno si possa **osservare** **alcun** **cambiamento**. **Rallenta** e compensa il normale **degradamento** della qualità del codice che avviene a ogni modifica. Il refactoring rende anche più **cheap** la maintenance e ulteriori modifiche successive.
 
-Debito tecnico = A ogni modifica mi sto indebitando con lo sviluppatore che verrà dopo di me (perché il codice è leggermente più difficile da leggere). Il refactoring salda parte di questo debito.
+**Debito tecnico** = A ogni modifica mi sto indebitando con lo sviluppatore che verrà dopo di me (perché il codice è leggermente più difficile da leggere). Il refactoring salda parte di questo debito.
 
-Re-engineering = Rifare un SW da capo. Si contrappone al refactoring che invece è un processo continuo che accompagna il SW per tutta la sua vita.
+**Re-engineering** = Rifare un software da capo. È un attività puntuale e per questo si contrappone al refactoring che invece è un processo **continuo** che accompagna il software per tutta la sua vita.
 
 Quando fare refactoring?
 
 - Senza una schedule precisa
-- Prima di aggiungere una feature (così sarà più facile farlo)
-- Dopo aver fixato un bug
-- Quando si trova un code smell
+- Prima di aggiungere una **feature** (così sarà più facile farlo)
+- Dopo aver fixato un **bug**
+- Quando si trova un **code smell**
 
-Code Smell = Codice che tecnicamente funziona, però non segue buoni principi di design e degrada la qualità del codice
+**Code Smell** = Codice che tecnicamente funziona, però non segue buoni principi di design e degrada la qualità del codice. Esempi (con possibile soluzione):
 
-- Codice duplicato $\rightarrow$ Estrarre metodo
-- Metodo con corpo molto lungo $\rightarrow$ Spezzare in metodi più piccoli
+- Codice duplicato $\rightarrow$ Estrarre metodo.
+
+  Quando c'è duplicazione:
+
+  - Gli errori si ripetono
+  - Bisogna ricordarsi di propagare eventuali modifiche
+  - Dimensione della codebase esagerata
+
+  Del codice duplicato potrebbe non essere esattamente identico: si ha duplicazione anche se i nomi delle variabili o i tipi cambiano in modo consistente.
+- Metodi o classi troppo grandi o complicate $\rightarrow$ Spezzare in metodi o classi più piccole
 - Abuso di `switch` case $\rightarrow$ Usare il dynamic dispatch con polimorfismo
 - Data clumping: stesso gruppetto di variabili che compare spesso insieme $\rightarrow$ Raggruppare in una classe coesa
-- Generalità speculativa: cioè rendere codice più generale di quanto serve in questo momento, nel caso servisse in futuro $\rightarrow$ Togliere
-- Dead code
+- Generalità speculativa: cioè rendere codice più generale di quanto serva in questo momento, nel caso servisse in futuro $\rightarrow$ Togliere perché è una complicazione inutile
+- Dead code $\rightarrow$ Togliere
+- Classi molto piccole e prive di dinamicità (data-class)
 - Lunga lista di parametri
 - Try-Catch con `catch` vuoto
 
-Codice duplicato non è buono perché: 1) eventuali bug si ripetono 2) bisogna ricordarsi di ripetere le modifiche a tutti i cloni. Codice duplicato potrebbe non essere identico: potrebbe usare tipi o nomi di variabile diversi.
+I **test automatici** sono importantissimi per fare refactoring perché possiamo farlo con la peace-of-mind di non aver rotto niente.
 
-I test automatici sono importantissimi per fare refactoring perché possiamo farlo con la peace-of-mind di non aver rotto niente.
-
-Refactoring complessi si fanno con tanti diversi refactoring più atomici. Quelli più semplici spesso sono automatizzati dall'IDE (rinominare classe, spostare file, etc).
+Refactoring complessi si fanno con tanti diversi refactoring più **atomici**. Quelli più semplici spesso sono automatizzati dall'IDE (rinominare classe, spostare file, etc).
 
 Esempi di refactoring:
 
-- Rinomina variabile, metodo o classe
-- Extract interface: sostituire l'uso di una classe concreta con una nuova interfaccia che contiene solo ciò di cui si ha bisogno. Ad esempio: uso di `ArrayList<T>` diventa `Collection<T>` se abbiamo bisogno solo di fare `add`, `remove` e `contains`.
-- Pull up: spostare membri da sottoclasse a superclasse
-- Extract method: sostituisce codice duplicato con chiamata a nuovo metodo
-- Move method: sposta metodo da una classe ad un'altra
-- Replace temp with query: sostituisce il calcolo di un'espressione poi salvato in una variabile locale con una chiamata ad un metodo che fa il calcolo. Così diventa disponibile a tutti i metodi.
-- Replace parameter with method: se un metodo può arrangiarsi a calcolare un valore, non dovrebbe richiedere che gli venga passato pre-calcolato nei parametri
-- Extract class: spostare pezzi di una classe troppo grande in una più piccola e coesa
-- Replace inheritance with composition+delegation: altrimenti si eredita più del necessario. Ad esempio: uno `Stack<T>` che eredita da `ArrayList<T>` erediterebbe anche `insertAt` che non ha senso in uno stack
-- Replace conditional with polymorphism: rimpiazza uno switch case con una chiamata dynamically dispatch con una nuova classe per ogni branch
-- Separate domain from presentation: togliere la business logic dal codice per la view
+- **Rinomina** variabile, metodo o classe
+- **Extract interface**: sostituire l'uso di una classe concreta con una nuova interfaccia che contiene solo ciò di cui si ha bisogno. Ad esempio: uso di `ArrayList<T>` diventa `Collection<T>` se abbiamo bisogno solo di fare `add`, `remove` e `contains`.
+- **Pull up**: spostare membri da sottoclasse a superclasse
+- **Extract method**: sostituisce codice duplicato con chiamata a nuovo metodo
+- **Move method**: sposta metodo da una classe ad un'altra
+- **Replace temp with query**: sostituisce il calcolo di un'espressione poi salvato in una variabile locale con una chiamata ad un metodo che fa il calcolo. Così diventa disponibile a tutti i metodi e si rimuove la tentazione di fare metodi lunghi (visto che quella variabile locale è, appunto, disponibile solo nel corpo del metodo corrente).
+- **Replace parameter with method**: se un metodo può arrangiarsi a calcolare un valore, non dovrebbe richiedere che gli venga passato pre-calcolato nei parametri
+- **Extract class**: spostare pezzi di una classe troppo grande in una più piccola e coesa
+- **Replace inheritance with composition+delegation**: altrimenti si eredita più del necessario. Ad esempio: uno `Stack<T>` che eredita da `ArrayList<T>` erediterebbe anche `insertAt` che non ha senso in uno stack
+- **Replace conditional with polymorphism**: rimpiazza uno switch case con una chiamata dynamically dispatch con una nuova classe per ogni branch
+- **Separate domain from presentation**: togliere la business logic dal codice per la view
 
 ## 08 - Project Management
 
@@ -759,83 +760,101 @@ Essenziale perché il progetto deve rispettare vincoli:
 - Di budget
 - Di tempo
 
-Un buon management non garantisce il successo del progetto ma un cattivo management lo destina al fallimento.
+Un buon management **non garantisce** il successo del progetto ma un cattivo management lo **destina** al fallimento.
 
-Peculiarità del SW che rendono il management più difficile:
+Peculiarità del software che rendono il management ancora più difficile:
 
-- SW intangibile
+- Sofware è intangibile
 - Ogni progetto è unico e diverso
-- Processi variano e sono organization-specific
+- Processi variano da organizzazione a organizzazione
 
-Tassonomia del project management:
+Fattori che influenzano il project management:
 
 - Dimensione dell'azienda (comunicazione informale vs gerarchie complesse e procedure formali)
 - Clienti interni vs esterni (cambia la formalità richiesta per comunicare)
-- Dimensione SW (cambia il numero e la dimensione dei team richiesti)
-- Tipo SW (un sw critico richiede che ogni scelta sia registrata e giustificata)
-- Cultura aziendale
-- Processo SW Agile vs Formale
+- Dimensione software (cambia il numero e la dimensione dei team richiesti)
+- Tipo software (un sw critico richiede che ogni scelta sia registrata e giustificata)
+- Cultura aziendale (tendenza a correre rischi, quantità di burocrazia)
+- Processo software Agile vs Formale
 
-Attività:
+Attività del project management:
 
-- Project Planning = Pianificare sviluppo e assegnare persone alle task
-- Risk Management = Individuare, analizzare e monitorare i rischi. Prepare piani di risposta
-- People Management = Decidere chi lavora al progetto e cosa fa
-- Reporting = Ai clienti e ai ranghi superiori dell'azienda
-- Proposal Writing = Fare il preventivo e una proposta di progetto
+- Project **Planning** = Pianificare sviluppo e assegnare persone alle task
+- **Risk** Management = Individuare, analizzare e monitorare i rischi. Prepare piani di risposta
+- **People** Management = Decidere chi lavora al progetto e cosa fa
+- **Reporting** = Ai clienti e ai ranghi superiori dell'azienda
+- **Proposal** Writing = Fare il preventivo e una proposta di progetto
 
 ### Risk Management
 
-Attività cruciale a causa dell'incertezza intrinseca dei progetti SW:
+Attività cruciale a causa dell'**incertezza** intrinseca dei progetti SW:
 
-- Requisiti imprecisi
-- Requisiti cambiano
-- Difficoltà nel fare stime
-- Differenze nelle skill individuali
+- **Requisiti** imprecisi o mutabili
+- Difficoltà nel fare **stime**
+- Differenze nelle **skill** individuali
 
-1. Identificazione. Rischi dovuti a diversi motivi:
-    - Stime (esempio: sottostimata la dimensione del software o il tempo richiesto per svilupparlo)
-    - Organizzazione (esempio: cambiano i manager o cala il budget per problemi finanziari)
-    - Persone (esempio: non si riesce ad assumere le persone con le skill necessarie)
-    - Tecnologia (esempio: database non performante quanto anticipato)
-    - Strumenti (esempio: strumenti di sviluppo diversi non si integrano come anticipato)
-2. Analisi probabilità e impatto. Da rifare continuamente perché la probabilità e l'impatto sono soggettive e potrebbero cambiare mano a mano che si ottengono nuove informazioni
-3. Preparazione piani di risposta
-    - Avoidance strategies: Per minimizzare la probabilità che il rischio di manifesti
-    - Minimization strategies: Per minimizzare l'impatto
-    - Contingency plan: Se l'impatto non può essere minimizzato, come rispondere
-4. Monitoraggio, processo che si ripete continuamente e fa uso di indicatori
+Attività:
+
+1. **Identificazione**. Rischi dovuti a diversi motivi:
+    - **Stime** (esempio: sottostimata la dimensione del software o il tempo richiesto per svilupparlo)
+    - **Organizzazione** (esempio: cambiano i manager o cala il budget per problemi finanziari)
+    - **Persone** (esempio: non si riesce ad assumere le persone con le skill necessarie)
+    - **Requisiti** (esempio: stakeholder cambiano requisiti oppure nuove normative esterne)
+    - **Tecnologia** (esempio: database non performante quanto anticipato)
+    - **Strumenti** (esempio: strumenti di sviluppo diversi non si integrano come anticipato)
+2. **Analisi** **probabilità** e **impatto**. Da rifare continuamente perché la probabilità e l'impatto sono soggettive e potrebbero cambiare mano a mano che si ottengono nuove informazioni
+3. Preparazione **piani** di risposta
+    - **Avoidance** strategies: Per minimizzare la probabilità che il rischio si manifesti
+    - **Minimization** strategies: Per minimizzare l'impatto
+    - **Contingency** plan: Se l'impatto non può essere minimizzato, come rispondere
+4. **Monitoraggio**, processo che si ripete continuamente (facendo uso di indicatori) per capire se un rischo sta diventando più o meno probabile, e più o meno impattante rispetto a prima
 
 ### Managing People
 
 Responsabilità del project manager trovare (e tenere) persone in gamba e fare in modo che la loro produttività possa essere massimizzata.
 
-Vantaggi di un team unito:
+Vogliamo un team **coeso**. Perchè:
 
-- Quality standards del codice nascono naturalmente
-- Si impara l'uno dall'altro, colmando eventuali lacune
-- Share of knowledge: se un membro lascia il team, gli altri sanno continuare
-- Refactoring incoraggiato perché ognuno si sente responsabile dell'intera codebase
+- **Quality standards** del codice nascono naturalmente
+- Si impara l'uno dall'altro, **colmando** eventuali **lacune**
+- **Knowledge sharing**: se un membro lascia il team, le sue parti di codice sono conosciute anche da altri
+- **Refactoring** incoraggiato perché ognuno si sente responsabile dell'intera codebase
 
 Tipi di persone:
 
-- Task oriented: traggono entusiasmo dal lavoro stesso, poco socievoli
-- Self oriented: usano il lavoro come mezzo per un obiettivo secondario (diventare ricchi o potenti)
-- Interaction oriented: traggono entusiasmo dall'interazione con le persone. Molto socievoli ma non lavorano abbastanza
+- **Task** oriented: traggono entusiasmo dal lavoro stesso, poco socievoli
+- **Self** oriented: usano il lavoro come mezzo per un obiettivo secondario (diventare ricchi o potenti)
+- **Interaction** oriented: traggono entusiasmo dall'interazione con le persone. Molto socievoli ma non lavorano molto
 
 In un buon gruppo ci deve essere un mix di questi
 
-### Project planning
+### Project planning (Stampo plan-driven)
 
-In un piano si stila: 1) lavoro da fare 2) chi lo fa 3) con che tempistiche 4) con quali prodotti ottenuti. Il piano serve ai manager per misurare il progresso e fare decisioni informate (soprattutto se il piano viene fatto prima di partire, permette di risolvere subito i primi problemi).
+In un piano si scrive:
 
-Scheduling = Suddividere il lavoro in task e decidere come saranno realizzate. Cioè: tempo da calendario richiesto, effort (quanti giorni-uomo), chi lo fa, altre risorse richieste, una deadline, un punto di fine ben definito (meeting, produzione documento, passaggio di tutti i test, etc.)
+1. Lavoro da fare
+2. Chi lo fa
+3. Con che tempistiche
+4. Con quali prodotti ottenuti
+
+Il piano serve ai manager per misurare il **progresso** e fare **decisioni** informate (soprattutto se il piano viene fatto prima di partire, permette di risolvere subito i primi problemi).
+
+**Scheduling** = Suddividere il lavoro in task e decidere come saranno realizzate. Cioè:
+
+- Tempo da calendario richiesto
+- Effort (quanti giorni-uomo)
+- Chi lo fa
+- Altre risorse richieste
+- Deadline
+- Punto di fine ben definito (meeting, produzione documento, passaggio di tutti i test, etc.)
 
 Bisogna cercare di schedulare le task in parallelo e con meno dipendenze possibile.
 
-Milestone = Punto importante nella schedule in cui verificare il progresso. Ad esempio: consegna del codice per essere testato.
+**Milestone** = Punto importante nella schedule in cui verificare il progresso. Ad esempio: consegna del codice per essere testato.
 
-Deliverable = Cosa da consegnare al cliente. Tipicamente a una milestone può corrispondere o meno un deliverable.
+**Deliverable** = Cosa da consegnare al cliente. Tipicamente a una milestone può corrispondere o meno un deliverable.
+
+(**ATTENZIONE**: Il diagramma di Gantt è una tipica domanda d'**esame**)
 
 ![](img/2023-01-21-15-04-48.png)
 
@@ -845,51 +864,47 @@ Deliverable = Cosa da consegnare al cliente. Tipicamente a una milestone può co
 
 #### Agile planning
 
-Contrapposto ad un planning rigido fatto subito, l'agile usa un processo di pianificazione interattivo e continuo. SW consegnato ad incrementi al cliente e le feature incluse in un incremento si decidono di volta in volta con il cliente che aiuta a prioritizzare.
+Contrapposto ad un planning rigido fatto subito, l'agile usa un processo di pianificazione **interattivo** e **continuo**. Software consegnato ad incrementi al cliente e le feature incluse in un incremento si decidono di volta in volta con il cliente che aiuta a prioritizzare.
 
 Planning incrementale su due fronti:
 
-- Release: decidere feature da includere in una release
-- Iteration: (più corto) decidere feature da includere in un incremento (non tutti gli incrementi corrispondono a release formali e grosse)
+- **Release**: decidere feature da includere in una release
+- **Iteration**: (cadenza più regolare) decidere feature da includere in un incremento (non tutti gli incrementi corrispondono a release formali e grosse)
 
 ![](img/2023-01-21-15-09-44.png)
 
 Release (qualche mese) = Tante iterations (ciascuna un paio di settimane)
 
-- Story Identification & Initial Estimation = Cliente e team scrivono le stories e gli scenari con le feature che il SW deve avere. Stories grandi sono spezzate in piccole ed eventualmente si aggiunge dettaglio a qualhe sezione usando gli scenari. Viene assegnato un stima dell'effort necessario per completare ogni story. Con la velocity (la cui stima migliora con il tempo) si può stimare il tempo richiesto per sviluppare il sistema.
-- Release Planning = Si decide quali stories/scenari mettere nella prossima release e in che ordine svilupparle.
-- Iteration Planning = Si scelgono le stories/scenari della release da sviluppare in questa iterazione. Le stories/scenari sono divise in piccole task card (ciascuna da 4-16 ore di sviluppo, è un'unità di lavoro atomica) e ognuno si sceglie quella che vuole. Ogni tanto si guarda il progresso raggiunto e si decide se togliere qualche stories/scenario (ma la deadline non cambia! al massimo si fanno meno feature).
+- Story Identification & Initial Estimation = Cliente e team **scrivono** le **user stories** e gli **scenari** con le feature che il SW deve avere. Stories grandi sono spezzate in piccole ed eventualmente si aggiunge dettaglio a qualche sezione usando gli scenari. Viene assegnato un **stima** dell'effort necessario per completare ogni story. Con la **velocity** (la cui stima migliora con il tempo) si può stimare il tempo richiesto per sviluppare il sistema.
+- Release Planning = Si **scelgono** le stories/scenari mettere nella prossima **release** e in che ordine svilupparle.
+- Iteration Planning = Si **scelgono** le stories/scenari della release da sviluppare in questa **iterazione**. Le stories/scenari sono **divise in piccole task card** (ciascuna da 4-16 ore di sviluppo, è un'unità di lavoro atomica) e ognuno si **sceglie** quelle che vuole sviluppare. Ogni tanto si guarda il progresso raggiunto e si decide se **togliere** qualche stories/scenario (ma la deadline non cambia! al massimo si fanno meno feature).
 
-Pros & Cons del planning agile:
-- $+$ Tutti conoscono lo stato del progetto e sanno chi sta facendo cosa
-- $+$ I membri del team decidono le proprie task e quindi hanno più entusiasmo nel farle
-- $-$ Serve cliente disponibile
-- $-$ Serve client/organizzazione disposta a usare questo metodo più moderno
-- $-$ Serve team piccolo
-
+Pros & Cons sono già stati descritti parlando di Agile e SCRUM. L'unica cosa aggiunta qui è che gli svilupattori scelgono le task che vogliono sviluppare. Quindi lavorano con più entusiasmo e serenità.
 ## 09 - UML
 
 Unified Modelling Language = Insieme di notazioni grafiche che supportano la _descrizione_ e il _design_ di sistemi software. Si astrae in modo da mostrare solo i componenti principali e le loro relazioni.
 
 Digrammi servono per:
 
-- Capire il sistema
-- Proporre soluzioni e discutere
-- Prendere decisioni
-- Documentare il sistema
+- **Capire** il dominio e il sistema
+- **Proporre** soluzioni e **discutere**
+- Prendere **decisioni**
+- **Documentare** il sistema
 
 Sketch sulla lavagna $\rightarrow$ Diagrammi UML $\rightarrow$ Codice
 
+(Ci sono anche strumenti di reverse engineering che prendono del codice e ne costruiscono il diagramma UML)
+
 Tassonomia:
 
-- Structural (statico: struttura del codice del sw - dinamico: struttura del sw quando in esecuzione)
-    - Class diagram
-    - Object diagram
+- Structural
+    - **Class** diagram (**statico**: struttura del codice)
+    - **Object** diagram (**dinamico**: struttura del sistema quando in esecuzione)
 - Behavioral
-    - Interaction (talvolta visto che branch root-level)
-        - Use-case diagram
-        - Sequence diagram
-    - Activity diagram, data driven
-    - State machine diagram, event driven
+    - Interaction (talvolta si trova come categoria completamente separata e parallela ai behavioral diagrams)
+        - Use-case diagram (diversi livelli di astrazione: fish poi sea poi kite)
+        - Sequence diagram (descrivono in dettaglio un **singolo use case** nell'interazione di diversi attori)
+    - Activity diagram (**data driven**: mostra come il sistema processa i dati)
+    - State machine diagram (**event driven**: mostra come il sistema reagisce agli stimoli esterni)
 
-(Per il resto, vedi il foglio scritto a mano)
+(Per il resto, guarda le slide)
